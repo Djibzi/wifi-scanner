@@ -1,0 +1,5 @@
+[2026-03-19 08:42:22,462] INFO     [logger] --- Début du scan : Analyse WiFi ---
+[2026-03-19 08:42:22,838] INFO     [logger] WiFi analysé : SSID=Freebox-328349, Sécurité=WPA2
+[2026-03-19 08:42:22,838] WARNING  [logger] [VULN:MOYENNE] WPA2 sans PMF (802.11w)
+[2026-03-19 08:42:22,838] INFO     [logger] --- Fin du scan : Analyse WiFi (durée: 0.38s) ---
+[2026-03-19 08:42:22,838] INFO     [logger] Génération du rapport — module non encore implémenté

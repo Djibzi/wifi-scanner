@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rapport de Sécurité WiFi — {{ wifi.ssid or "Réseau" }}</title>
+    <title>Rapport de Sécurité WiFi — Réseau</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #0f172a; color: #e2e8f0; line-height: 1.6; }
@@ -70,87 +70,40 @@
     <div class="container">
         <div class="header">
             <h1>Rapport de Sécurité Réseau WiFi</h1>
-            <p class="subtitle">{{ wifi.ssid or "Réseau inconnu" }} — Généré le {{ scan_date }}</p>
+            <p class="subtitle">Réseau inconnu — Généré le 19/03/2026 09:09:43</p>
         </div>
 
-        {# --- RÉSUMÉ EXÉCUTIF --- #}
+        
         <h2>Résumé Exécutif</h2>
         <div class="score-card">
-            <div class="score-circle grade-{{ grade }}">
-                {{ grade }}
-                <span class="score-label">{{ score }}/100</span>
+            <div class="score-circle grade-B">
+                B
+                <span class="score-label">85/100</span>
             </div>
             <div class="stat-box">
-                <div class="stat-number stat-critical">{{ vuln_counts.get("CRITIQUE", 0) }}</div>
+                <div class="stat-number stat-critical">0</div>
                 <div class="stat-label">Critiques</div>
             </div>
             <div class="stat-box">
-                <div class="stat-number stat-high">{{ vuln_counts.get("HAUTE", 0) }}</div>
+                <div class="stat-number stat-high">1</div>
                 <div class="stat-label">Hautes</div>
             </div>
             <div class="stat-box">
-                <div class="stat-number stat-medium">{{ vuln_counts.get("MOYENNE", 0) }}</div>
+                <div class="stat-number stat-medium">1</div>
                 <div class="stat-label">Moyennes</div>
             </div>
             <div class="stat-box">
-                <div class="stat-number stat-low">{{ vuln_counts.get("FAIBLE", 0) + vuln_counts.get("INFO", 0) }}</div>
+                <div class="stat-number stat-low">0</div>
                 <div class="stat-label">Faibles/Info</div>
             </div>
         </div>
 
-        {# --- INFORMATIONS WIFI --- #}
-        {% if wifi.ssid %}
-        <h2>Informations du Réseau WiFi</h2>
-        <div class="wifi-grid">
-            <div class="wifi-item">
-                <div class="wifi-item-label">SSID</div>
-                <div class="wifi-item-value">{{ wifi.ssid }}</div>
-            </div>
-            <div class="wifi-item">
-                <div class="wifi-item-label">BSSID</div>
-                <div class="wifi-item-value">{{ wifi.bssid }}</div>
-            </div>
-            <div class="wifi-item">
-                <div class="wifi-item-label">Sécurité</div>
-                <div class="wifi-item-value">{{ wifi.security }} / {{ wifi.encryption }}</div>
-            </div>
-            <div class="wifi-item">
-                <div class="wifi-item-label">Canal</div>
-                <div class="wifi-item-value">{{ wifi.channel }} ({{ wifi.frequency }})</div>
-            </div>
-            <div class="wifi-item">
-                <div class="wifi-item-label">Signal</div>
-                <div class="wifi-item-value">{{ wifi.signal_strength }} dBm</div>
-            </div>
-            <div class="wifi-item">
-                <div class="wifi-item-label">Passerelle</div>
-                <div class="wifi-item-value">{{ wifi.gateway_ip }}</div>
-            </div>
-            <div class="wifi-item">
-                <div class="wifi-item-label">Masque</div>
-                <div class="wifi-item-value">{{ wifi.subnet_mask }}</div>
-            </div>
-            <div class="wifi-item">
-                <div class="wifi-item-label">DNS</div>
-                <div class="wifi-item-value">{{ wifi.dns_servers | join(", ") }}</div>
-            </div>
-        </div>
+        
+        
 
-        {% if wifi.vulnerabilities %}
-        <h3>Vulnérabilités WiFi</h3>
-        {% for vuln in wifi.vulnerabilities %}
-        <div class="card card-{{ vuln.severity.value | lower }}">
-            <div class="card-title"><span class="badge badge-{{ vuln.severity.value | lower }}">{{ vuln.severity.value }}</span> {{ vuln.name }}</div>
-            <div class="card-detail">{{ vuln.description }}</div>
-            <div class="card-remediation">Remédiation : {{ vuln.remediation }}</div>
-        </div>
-        {% endfor %}
-        {% endif %}
-        {% endif %}
-
-        {# --- INVENTAIRE DES APPAREILS --- #}
-        {% if hosts %}
-        <h2>Inventaire des Appareils ({{ hosts | length }})</h2>
+        
+        
+        <h2>Inventaire des Appareils (1)</h2>
         <table>
             <tr>
                 <th>IP</th>
@@ -162,63 +115,69 @@
                 <th>Ports ouverts</th>
                 <th>Vulns</th>
             </tr>
-            {% for host in hosts %}
+            
             <tr>
-                <td>{{ host.ip }}{% if host.is_gateway %} ⚡{% endif %}</td>
-                <td>{{ host.mac or "—" }}</td>
-                <td>{{ host.vendor or "—" }}</td>
-                <td>{{ host.hostname or "—" }}</td>
-                <td>{{ host.os_guess or "—" }}</td>
-                <td>{{ host.device_type or "—" }}</td>
-                <td>{{ host.open_ports | map(attribute='number') | list | join(", ") or "—" }}</td>
+                <td>192.168.1.113</td>
+                <td>—</td>
+                <td>—</td>
+                <td>—</td>
+                <td>—</td>
+                <td>—</td>
+                <td>21, 53</td>
                 <td>
-                    {% if host.vulnerabilities | length > 0 %}
-                    <span class="badge badge-{% if host.has_critical_vulns() %}critique{% else %}moyenne{% endif %}">{{ host.vulnerabilities | length }}</span>
-                    {% else %}
-                    0
-                    {% endif %}
+                    
+                    <span class="badge badge-moyenne">1</span>
+                    
                 </td>
             </tr>
-            {% endfor %}
+            
         </table>
-        {% endif %}
+        
 
-        {# --- VULNÉRABILITÉS DÉTAILLÉES --- #}
-        {% if all_vulns %}
-        <h2>Vulnérabilités Détaillées ({{ all_vulns | length }})</h2>
-        {% for vuln in all_vulns %}
-        <div class="card card-{{ vuln.severity.value | lower }}">
+        
+        
+        <h2>Vulnérabilités Détaillées (2)</h2>
+        
+        <div class="card card-haute">
             <div class="card-title">
-                <span class="badge badge-{{ vuln.severity.value | lower }}">{{ vuln.severity.value }}</span>
-                {{ vuln.name }}
+                <span class="badge badge-haute">HAUTE</span>
+                Service exposé : FTP (sans TLS) (port 21)
             </div>
-            {% if vuln.host_ip %}
-            <div class="card-detail">Hôte : {{ vuln.host_ip }}{% if vuln.port %} (port {{ vuln.port }}){% endif %}</div>
-            {% endif %}
-            <div class="card-detail">{{ vuln.description }}</div>
-            {% if vuln.cve %}
-            <div class="card-detail">CVE : {{ vuln.cve }}</div>
-            {% endif %}
-            {% if vuln.proof %}
-            <div class="card-detail">Preuve : {{ vuln.proof }}</div>
-            {% endif %}
-            <div class="card-remediation">Remédiation : {{ vuln.remediation }}</div>
+            
+            <div class="card-detail">Hôte : 192.168.1.113 (port 21)</div>
+            
+            <div class="card-detail">FTP transmet les fichiers et identifiants en clair.</div>
+            
+            
+            <div class="card-detail">Preuve : Port 21 ouvert</div>
+            
+            <div class="card-remediation">Remédiation : Migrer vers SFTP (SSH) ou FTPS (FTP over TLS).</div>
         </div>
-        {% endfor %}
-        {% endif %}
+        
+        <div class="card card-moyenne">
+            <div class="card-title">
+                <span class="badge badge-moyenne">MOYENNE</span>
+                Aucun serveur DNS détecté
+            </div>
+            
+            <div class="card-detail">Aucun serveur DNS n'a été détecté dans la configuration réseau.</div>
+            
+            
+            <div class="card-remediation">Remédiation : Configurer un DNS de confiance (1.1.1.1, 8.8.8.8, 9.9.9.9).</div>
+        </div>
+        
+        
 
-        {# --- RECOMMANDATIONS --- #}
+        
         <h2>Recommandations</h2>
         <div class="card card-info">
             <div class="card-title">Actions prioritaires</div>
             <div class="card-detail">
                 <ul style="padding-left: 20px; margin-top: 8px;">
-                    {% if vuln_counts.get("CRITIQUE", 0) > 0 %}
-                    <li>Corriger immédiatement les {{ vuln_counts["CRITIQUE"] }} vulnérabilité(s) critique(s)</li>
-                    {% endif %}
-                    {% if vuln_counts.get("HAUTE", 0) > 0 %}
-                    <li>Traiter les {{ vuln_counts["HAUTE"] }} vulnérabilité(s) haute(s) dans les plus brefs délais</li>
-                    {% endif %}
+                    
+                    
+                    <li>Traiter les 1 vulnérabilité(s) haute(s) dans les plus brefs délais</li>
+                    
                     <li>Mettre à jour le firmware du routeur et de tous les appareils</li>
                     <li>Utiliser WPA3 ou WPA2-AES avec un mot de passe fort (12+ caractères)</li>
                     <li>Désactiver WPS et UPnP si non nécessaires</li>
@@ -229,8 +188,8 @@
         </div>
 
         <div class="footer">
-            <p>Rapport généré par WiFi Scanner — {{ scan_date }}</p>
-            <p>Durée du scan : {{ scan_duration }}</p>
+            <p>Rapport généré par WiFi Scanner — 19/03/2026 09:09:43</p>
+            <p>Durée du scan : 7.9 secondes</p>
             <p>Cet outil est destiné à un usage autorisé uniquement.</p>
         </div>
     </div>

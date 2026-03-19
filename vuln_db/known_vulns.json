@@ -1,1 +1,139 @@
-{}
+{
+    "OpenSSH": {
+        "< 7.0": [
+            {
+                "cve": "CVE-2016-0777",
+                "severity": "HAUTE",
+                "description": "Fuite d'informations via le roaming SSH"
+            }
+        ],
+        "< 8.5": [
+            {
+                "cve": "CVE-2021-41617",
+                "severity": "HAUTE",
+                "description": "Élévation de privilèges via AuthorizedKeysCommand"
+            }
+        ],
+        "< 9.3": [
+            {
+                "cve": "CVE-2023-38408",
+                "severity": "CRITIQUE",
+                "description": "Exécution de code à distance via ssh-agent forwarding"
+            }
+        ],
+        "< 9.8": [
+            {
+                "cve": "CVE-2024-6387",
+                "severity": "CRITIQUE",
+                "description": "RegreSSHion — exécution de code à distance sans authentification (glibc Linux)"
+            }
+        ]
+    },
+    "Apache": {
+        "< 2.4.50": [
+            {
+                "cve": "CVE-2021-41773",
+                "severity": "CRITIQUE",
+                "description": "Path traversal et exécution de code à distance"
+            }
+        ],
+        "< 2.4.52": [
+            {
+                "cve": "CVE-2021-44790",
+                "severity": "CRITIQUE",
+                "description": "Buffer overflow dans mod_lua"
+            }
+        ],
+        "< 2.4.58": [
+            {
+                "cve": "CVE-2023-43622",
+                "severity": "HAUTE",
+                "description": "Déni de service via HTTP/2"
+            }
+        ]
+    },
+    "nginx": {
+        "< 1.22.1": [
+            {
+                "cve": "CVE-2022-41741",
+                "severity": "HAUTE",
+                "description": "Corruption mémoire dans le module mp4"
+            }
+        ],
+        "< 1.25.3": [
+            {
+                "cve": "CVE-2023-44487",
+                "severity": "HAUTE",
+                "description": "HTTP/2 Rapid Reset — déni de service"
+            }
+        ]
+    },
+    "ProFTPD": {
+        "< 1.3.7": [
+            {
+                "cve": "CVE-2020-9273",
+                "severity": "CRITIQUE",
+                "description": "Exécution de code à distance via buffer overflow"
+            }
+        ],
+        "< 1.3.8": [
+            {
+                "cve": "CVE-2021-46854",
+                "severity": "HAUTE",
+                "description": "Lecture de fichiers arbitraires via mod_radius"
+            }
+        ]
+    },
+    "vsftpd": {
+        "< 3.0.4": [
+            {
+                "cve": "CVE-2021-3618",
+                "severity": "MOYENNE",
+                "description": "Vulnérabilité ALPACA — cross-protocol attack via TLS"
+            }
+        ]
+    },
+    "Microsoft-IIS": {
+        "< 10.0": [
+            {
+                "cve": "CVE-2021-31166",
+                "severity": "CRITIQUE",
+                "description": "Exécution de code à distance via HTTP Protocol Stack"
+            }
+        ]
+    },
+    "MySQL": {
+        "< 8.0.32": [
+            {
+                "cve": "CVE-2023-21977",
+                "severity": "MOYENNE",
+                "description": "Déni de service via le serveur Optimizer"
+            }
+        ]
+    },
+    "Redis": {
+        "< 6.2.7": [
+            {
+                "cve": "CVE-2022-24735",
+                "severity": "HAUTE",
+                "description": "Exécution de code Lua via des scripts malveillants"
+            }
+        ],
+        "< 7.0.5": [
+            {
+                "cve": "CVE-2022-35951",
+                "severity": "CRITIQUE",
+                "description": "Integer overflow dans la commande XAUTOCLAIM"
+            }
+        ]
+    },
+    "Postfix": {
+        "< 3.6.7": [
+            {
+                "cve": "CVE-2023-51764",
+                "severity": "MOYENNE",
+                "description": "SMTP smuggling — contournement de l'authentification SPF/DKIM"
+            }
+        ]
+    }
+}

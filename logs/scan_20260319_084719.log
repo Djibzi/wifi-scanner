@@ -1,0 +1,57 @@
+[2026-03-19 08:47:19,037] INFO     [logger] --- Début du scan : Analyse WiFi ---
+[2026-03-19 08:47:19,388] INFO     [logger] WiFi analysé : SSID=, Sécurité=
+[2026-03-19 08:47:19,388] INFO     [logger] --- Fin du scan : Analyse WiFi (durée: 0.35s) ---
+[2026-03-19 08:47:19,389] INFO     [logger] --- Début du scan : Découverte des hôtes ---
+[2026-03-19 08:47:19,412] WARNING  [logger] Détection automatique échouée, utilisation de 192.168.1.0/24
+[2026-03-19 08:47:19,413] INFO     [logger] Scan du réseau : 192.168.1.0/24
+[2026-03-19 08:47:19,458] INFO     [logger] 1 hôte(s) dans la table ARP
+[2026-03-19 08:47:19,458] INFO     [logger] Ping sweep de 254 IPs...
+[2026-03-19 08:47:34,133] INFO     [logger] Hôte découvert : 172.20.10.1 MAC=CE:C9:5D:59:BC:64
+[2026-03-19 08:47:38,730] INFO     [logger] Hôte découvert : 192.168.1.155
+[2026-03-19 08:47:43,355] INFO     [logger] Hôte découvert : 192.168.1.184
+[2026-03-19 08:47:47,968] INFO     [logger] Hôte découvert : 192.168.1.131
+[2026-03-19 08:47:52,510] INFO     [logger] Hôte découvert : 192.168.1.112
+[2026-03-19 08:47:57,118] INFO     [logger] Hôte découvert : 192.168.1.49
+[2026-03-19 08:48:01,738] INFO     [logger] Hôte découvert : 192.168.1.88
+[2026-03-19 08:48:06,377] INFO     [logger] Hôte découvert : 192.168.1.149
+[2026-03-19 08:48:10,966] INFO     [logger] Hôte découvert : 192.168.1.136
+[2026-03-19 08:48:17,690] INFO     [logger] Hôte découvert : 192.168.1.48
+[2026-03-19 08:48:22,267] INFO     [logger] Hôte découvert : 192.168.1.167
+[2026-03-19 08:48:26,916] INFO     [logger] Hôte découvert : 192.168.1.58
+[2026-03-19 08:48:31,442] INFO     [logger] Hôte découvert : 192.168.1.176
+[2026-03-19 08:48:36,045] INFO     [logger] Hôte découvert : 192.168.1.145
+[2026-03-19 08:48:40,661] INFO     [logger] Hôte découvert : 192.168.1.95
+[2026-03-19 08:48:45,253] INFO     [logger] Hôte découvert : 192.168.1.144
+[2026-03-19 08:48:49,842] INFO     [logger] Hôte découvert : 192.168.1.85
+[2026-03-19 08:48:54,373] INFO     [logger] Hôte découvert : 192.168.1.94
+[2026-03-19 08:48:59,007] INFO     [logger] Hôte découvert : 192.168.1.47
+[2026-03-19 08:49:03,620] INFO     [logger] Hôte découvert : 192.168.1.175
+[2026-03-19 08:49:08,150] INFO     [logger] Hôte découvert : 192.168.1.123
+[2026-03-19 08:49:12,693] INFO     [logger] Hôte découvert : 192.168.1.39
+[2026-03-19 08:49:17,239] INFO     [logger] Hôte découvert : 192.168.1.182
+[2026-03-19 08:49:21,853] INFO     [logger] Hôte découvert : 192.168.1.153
+[2026-03-19 08:49:26,381] INFO     [logger] Hôte découvert : 192.168.1.170
+[2026-03-19 08:49:30,997] INFO     [logger] Hôte découvert : 192.168.1.177
+[2026-03-19 08:49:35,607] INFO     [logger] Hôte découvert : 192.168.1.159
+[2026-03-19 08:49:40,138] INFO     [logger] Hôte découvert : 192.168.1.93
+[2026-03-19 08:49:44,783] INFO     [logger] Hôte découvert : 192.168.1.86
+[2026-03-19 08:49:51,479] INFO     [logger] Hôte découvert : 192.168.1.59
+[2026-03-19 08:49:56,100] INFO     [logger] Hôte découvert : 192.168.1.128
+[2026-03-19 08:50:00,707] INFO     [logger] Hôte découvert : 192.168.1.183
+[2026-03-19 08:50:05,332] INFO     [logger] Hôte découvert : 192.168.1.158
+[2026-03-19 08:50:09,910] INFO     [logger] Hôte découvert : 192.168.1.63
+[2026-03-19 08:50:14,518] INFO     [logger] Hôte découvert : 192.168.1.157
+[2026-03-19 08:50:19,056] INFO     [logger] Hôte découvert : 192.168.1.57
+[2026-03-19 08:50:23,603] INFO     [logger] Hôte découvert : 192.168.1.46
+[2026-03-19 08:50:28,153] INFO     [logger] Hôte découvert : 192.168.1.38
+[2026-03-19 08:50:32,684] INFO     [logger] Hôte découvert : 192.168.1.152
+[2026-03-19 08:50:37,313] INFO     [logger] Hôte découvert : 192.168.1.148
+[2026-03-19 08:50:41,906] INFO     [logger] Hôte découvert : 192.168.1.140
+[2026-03-19 08:50:46,556] INFO     [logger] Hôte découvert : 192.168.1.156
+[2026-03-19 08:50:57,452] INFO     [logger] Hôte découvert : 192.168.1.82
+[2026-03-19 08:51:02,092] INFO     [logger] Hôte découvert : 192.168.1.80
+[2026-03-19 08:51:06,720] INFO     [logger] Hôte découvert : 192.168.1.60
+[2026-03-19 08:51:11,239] INFO     [logger] Hôte découvert : 192.168.1.56
+[2026-03-19 08:51:15,825] INFO     [logger] Hôte découvert : 192.168.1.37
+[2026-03-19 08:51:20,466] INFO     [logger] Hôte découvert : 192.168.1.99
+[2026-03-19 08:51:25,111] INFO     [logger] Hôte découvert : 192.168.1.79
