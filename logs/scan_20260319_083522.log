@@ -1,0 +1,19 @@
+[2026-03-19 08:35:22,603] INFO     [logger] --- Début du scan : Analyse WiFi ---
+[2026-03-19 08:35:22,604] INFO     [logger] Analyse WiFi — module non encore implémenté
+[2026-03-19 08:35:22,604] INFO     [logger] --- Fin du scan : Analyse WiFi (durée: 0.00s) ---
+[2026-03-19 08:35:22,604] INFO     [logger] --- Début du scan : Découverte des hôtes ---
+[2026-03-19 08:35:22,604] INFO     [logger] Découverte des hôtes — module non encore implémenté
+[2026-03-19 08:35:22,604] INFO     [logger] --- Fin du scan : Découverte des hôtes (durée: 0.00s) ---
+[2026-03-19 08:35:22,604] INFO     [logger] --- Début du scan : Scan de ports ---
+[2026-03-19 08:35:22,604] INFO     [logger] Scan de ports — module non encore implémenté
+[2026-03-19 08:35:22,605] INFO     [logger] --- Fin du scan : Scan de ports (durée: 0.00s) ---
+[2026-03-19 08:35:22,605] INFO     [logger] --- Début du scan : Détection des services ---
+[2026-03-19 08:35:22,605] INFO     [logger] Détection des services — module non encore implémenté
+[2026-03-19 08:35:22,605] INFO     [logger] --- Fin du scan : Détection des services (durée: 0.00s) ---
+[2026-03-19 08:35:22,605] INFO     [logger] --- Début du scan : Fingerprint OS ---
+[2026-03-19 08:35:22,605] INFO     [logger] Fingerprint OS — module non encore implémenté
+[2026-03-19 08:35:22,605] INFO     [logger] --- Fin du scan : Fingerprint OS (durée: 0.00s) ---
+[2026-03-19 08:35:22,605] INFO     [logger] --- Début du scan : Détection de vulnérabilités ---
+[2026-03-19 08:35:22,605] INFO     [logger] Détection de vulnérabilités — module non encore implémenté
+[2026-03-19 08:35:22,605] INFO     [logger] --- Fin du scan : Détection de vulnérabilités (durée: 0.00s) ---
+[2026-03-19 08:35:22,605] INFO     [logger] Génération du rapport — module non encore implémenté

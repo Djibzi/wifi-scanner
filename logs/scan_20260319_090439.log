@@ -1,0 +1,25 @@
+[2026-03-19 09:04:39,408] INFO     [logger] --- Début du scan : Analyse WiFi ---
+[2026-03-19 09:04:39,718] INFO     [logger] WiFi analysé : SSID=, Sécurité=
+[2026-03-19 09:04:39,718] INFO     [logger] --- Fin du scan : Analyse WiFi (durée: 0.31s) ---
+[2026-03-19 09:04:39,719] INFO     [logger] --- Début du scan : Découverte des hôtes ---
+[2026-03-19 09:04:39,719] INFO     [logger] Cible spécifiée : 192.168.1.113
+[2026-03-19 09:04:39,719] INFO     [logger] --- Fin du scan : Découverte des hôtes (durée: 0.31s) ---
+[2026-03-19 09:04:39,719] INFO     [logger] --- Début du scan : Scan de ports ---
+[2026-03-19 09:04:39,721] INFO     [logger] Scan de 37 ports sur 1 hôte(s)
+[2026-03-19 09:04:39,721] INFO     [logger] Scan de 192.168.1.113 (37 ports)...
+[2026-03-19 09:04:40,256] INFO     [logger] 192.168.1.113 — 2 port(s) ouvert(s) : 21, 53
+[2026-03-19 09:04:40,264] INFO     [logger] --- Fin du scan : Scan de ports (durée: 0.86s) ---
+[2026-03-19 09:04:40,264] INFO     [logger] --- Début du scan : Détection des services ---
+[2026-03-19 09:04:40,265] INFO     [logger] Détection des services sur 192.168.1.113...
+[2026-03-19 09:04:44,315] INFO     [logger] --- Fin du scan : Détection des services (durée: 4.91s) ---
+[2026-03-19 09:04:44,316] INFO     [logger] --- Début du scan : Fingerprint OS ---
+[2026-03-19 09:04:44,316] INFO     [logger] --- Fin du scan : Fingerprint OS (durée: 4.91s) ---
+[2026-03-19 09:04:44,316] INFO     [logger] --- Début du scan : Détection de vulnérabilités ---
+[2026-03-19 09:04:44,318] WARNING  [logger] [VULN:HAUTE] 192.168.1.113:21 — FTP (sans TLS)
+[2026-03-19 09:04:44,318] INFO     [logger] 1 vulnérabilité(s) détectée(s) au total
+[2026-03-19 09:04:47,329] INFO     [logger] Analyse DNS : 1 problème(s) détecté(s)
+[2026-03-19 09:04:47,329] INFO     [logger] --- Fin du scan : Détection de vulnérabilités (durée: 7.92s) ---
+[2026-03-19 09:04:47,330] INFO     [logger] --- Début du scan : Test des identifiants ---
+[2026-03-19 09:04:47,331] INFO     [logger] Test des identifiants ftp sur 192.168.1.113:21
+[2026-03-19 09:05:01,448] INFO     [logger] --- Fin du scan : Test des identifiants (durée: 22.04s) ---
+[2026-03-19 09:05:01,449] INFO     [logger] Génération du rapport — module non encore implémenté

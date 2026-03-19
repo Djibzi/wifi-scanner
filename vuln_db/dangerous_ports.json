@@ -1,1 +1,86 @@
-{}
+{
+    "23": {
+        "name": "Telnet",
+        "severity": "CRITIQUE",
+        "description": "Telnet transmet tout en clair, y compris les mots de passe. N'importe qui sur le réseau peut intercepter les identifiants.",
+        "remediation": "Désactiver Telnet et utiliser SSH à la place."
+    },
+    "21": {
+        "name": "FTP (sans TLS)",
+        "severity": "HAUTE",
+        "description": "FTP transmet les fichiers et identifiants en clair.",
+        "remediation": "Migrer vers SFTP (SSH) ou FTPS (FTP over TLS)."
+    },
+    "5900": {
+        "name": "VNC",
+        "severity": "HAUTE",
+        "description": "VNC est souvent mal sécurisé : pas de chiffrement par défaut, authentification faible, vulnérabilités connues.",
+        "remediation": "Utiliser VNC uniquement à travers un tunnel SSH/VPN. Mettre un mot de passe fort."
+    },
+    "5901": {
+        "name": "VNC-1",
+        "severity": "HAUTE",
+        "description": "VNC est souvent mal sécurisé : pas de chiffrement par défaut, authentification faible.",
+        "remediation": "Utiliser VNC uniquement à travers un tunnel SSH/VPN."
+    },
+    "161": {
+        "name": "SNMP",
+        "severity": "HAUTE",
+        "description": "SNMP v1/v2c utilise des community strings en clair. Le string par défaut 'public' donne accès à la configuration complète.",
+        "remediation": "Migrer vers SNMPv3 avec authentification et chiffrement. Changer les community strings par défaut."
+    },
+    "1883": {
+        "name": "MQTT (sans TLS)",
+        "severity": "HAUTE",
+        "description": "MQTT sans chiffrement expose les messages IoT en clair. Souvent sans authentification sur les installations par défaut.",
+        "remediation": "Activer TLS (port 8883) et configurer l'authentification."
+    },
+    "6379": {
+        "name": "Redis",
+        "severity": "CRITIQUE",
+        "description": "Redis exposé sans authentification permet la lecture/écriture de données, et potentiellement l'exécution de commandes sur le serveur.",
+        "remediation": "Ne jamais exposer Redis sur le réseau. Ajouter un mot de passe. Restreindre l'accès par IP."
+    },
+    "27017": {
+        "name": "MongoDB",
+        "severity": "CRITIQUE",
+        "description": "MongoDB sans authentification (configuration par défaut) donne accès à toutes les bases de données.",
+        "remediation": "Activer l'authentification. Restreindre l'écoute à 127.0.0.1."
+    },
+    "9100": {
+        "name": "Imprimante (JetDirect)",
+        "severity": "MOYENNE",
+        "description": "Les imprimantes réseau exposent souvent un panneau d'admin sans mot de passe et peuvent être utilisées comme point de pivot.",
+        "remediation": "Mettre un mot de passe sur le panneau d'admin. Isoler les imprimantes dans un VLAN dédié."
+    },
+    "3389": {
+        "name": "RDP",
+        "severity": "HAUTE",
+        "description": "RDP est une cible privilégiée des ransomwares. Souvent exposé avec des identifiants faibles et vulnérable à des failles connues (BlueKeep).",
+        "remediation": "Désactiver RDP si non nécessaire. Utiliser un VPN pour y accéder. Activer NLA (Network Level Authentication)."
+    },
+    "139": {
+        "name": "NetBIOS-SSN",
+        "severity": "MOYENNE",
+        "description": "NetBIOS expose des informations sur la machine (nom, domaine, partages) et peut être exploité pour des attaques de relay.",
+        "remediation": "Désactiver NetBIOS si non nécessaire. Filtrer le port 139 dans le pare-feu."
+    },
+    "445": {
+        "name": "SMB",
+        "severity": "MOYENNE",
+        "description": "SMB peut exposer des partages de fichiers. Les anciennes versions (SMBv1) sont vulnérables à EternalBlue/WannaCry.",
+        "remediation": "Désactiver SMBv1. S'assurer que les partages nécessitent une authentification. Appliquer les correctifs de sécurité."
+    },
+    "1900": {
+        "name": "SSDP/UPnP",
+        "severity": "MOYENNE",
+        "description": "UPnP permet à n'importe quel appareil du réseau d'ouvrir des ports sur le routeur. Vecteur d'attaque connu (UPnProxy).",
+        "remediation": "Désactiver UPnP dans les paramètres du routeur."
+    },
+    "25": {
+        "name": "SMTP",
+        "severity": "MOYENNE",
+        "description": "Un serveur SMTP ouvert peut être utilisé pour envoyer du spam ou des emails de phishing.",
+        "remediation": "S'assurer que le SMTP nécessite une authentification. Restreindre l'accès."
+    }
+}

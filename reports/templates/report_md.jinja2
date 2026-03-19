@@ -1,1 +1,94 @@
-{# Template rapport Markdown #}
+# Rapport de Sécurité Réseau WiFi
+
+**Réseau :** {{ wifi.ssid or "Inconnu" }}
+**Date :** {{ scan_date }}
+**Durée du scan :** {{ scan_duration }}
+
+---
+
+## Résumé Exécutif
+
+| Métrique | Valeur |
+|---|---|
+| **Score de sécurité** | **{{ score }}/100 ({{ grade }})** |
+| Vulnérabilités critiques | {{ vuln_counts.get("CRITIQUE", 0) }} |
+| Vulnérabilités hautes | {{ vuln_counts.get("HAUTE", 0) }} |
+| Vulnérabilités moyennes | {{ vuln_counts.get("MOYENNE", 0) }} |
+| Vulnérabilités faibles | {{ vuln_counts.get("FAIBLE", 0) }} |
+| Informations | {{ vuln_counts.get("INFO", 0) }} |
+| Appareils découverts | {{ hosts | length }} |
+
+---
+
+{% if wifi.ssid %}
+## Informations du Réseau WiFi
+
+| Paramètre | Valeur |
+|---|---|
+| SSID | {{ wifi.ssid }} |
+| BSSID | {{ wifi.bssid }} |
+| Sécurité | {{ wifi.security }} / {{ wifi.encryption }} |
+| Canal | {{ wifi.channel }} ({{ wifi.frequency }}) |
+| Signal | {{ wifi.signal_strength }} dBm |
+| Passerelle | {{ wifi.gateway_ip }} |
+| Masque | {{ wifi.subnet_mask }} |
+| DNS | {{ wifi.dns_servers | join(", ") }} |
+
+{% if wifi.vulnerabilities %}
+### Vulnérabilités WiFi
+
+{% for vuln in wifi.vulnerabilities %}
+- **[{{ vuln.severity.value }}]** {{ vuln.name }}
+  - {{ vuln.description }}
+  - *Remédiation :* {{ vuln.remediation }}
+{% endfor %}
+{% endif %}
+{% endif %}
+
+---
+
+{% if hosts %}
+## Inventaire des Appareils ({{ hosts | length }})
+
+| IP | MAC | Fabricant | OS | Type | Ports ouverts | Vulns |
+|---|---|---|---|---|---|---|
+{% for host in hosts %}
+| {{ host.ip }}{% if host.is_gateway %} **[GW]**{% endif %} | {{ host.mac or "—" }} | {{ host.vendor or "—" }} | {{ host.os_guess or "—" }} | {{ host.device_type or "—" }} | {{ host.open_ports | map(attribute='number') | list | join(", ") or "—" }} | {{ host.vulnerabilities | length }} |
+{% endfor %}
+{% endif %}
+
+---
+
+{% if all_vulns %}
+## Vulnérabilités Détaillées ({{ all_vulns | length }})
+
+{% for vuln in all_vulns %}
+### [{{ vuln.severity.value }}] {{ vuln.name }}
+
+- **Hôte :** {{ vuln.host_ip or "Réseau" }}{% if vuln.port %} (port {{ vuln.port }}){% endif %}
+
+- **Description :** {{ vuln.description }}
+{% if vuln.cve %}- **CVE :** {{ vuln.cve }}{% endif %}
+
+{% if vuln.proof %}- **Preuve :** {{ vuln.proof }}{% endif %}
+
+- **Remédiation :** {{ vuln.remediation }}
+
+{% endfor %}
+{% endif %}
+
+---
+
+## Recommandations
+
+1. Corriger les vulnérabilités critiques et hautes en priorité
+2. Mettre à jour le firmware du routeur et de tous les appareils
+3. Utiliser WPA3 ou WPA2-AES avec un mot de passe fort
+4. Désactiver WPS et UPnP si non nécessaires
+5. Isoler les appareils IoT dans un réseau séparé
+6. Utiliser un DNS sécurisé (1.1.1.1, 8.8.8.8, 9.9.9.9)
+
+---
+
+*Rapport généré par WiFi Scanner — {{ scan_date }}*
+*Cet outil est destiné à un usage autorisé uniquement.*
