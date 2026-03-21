@@ -1,6 +1,7 @@
 # config.py — Configuration globale du scanner réseau WiFi
 
 import os
+import sys
 import json
 
 
@@ -66,8 +67,12 @@ class ScannerConfig:
     ]
 
     # Chemins des bases de données de vulnérabilités
-    VULN_DB_DIR = os.path.join(os.path.dirname(os.path.dirname(__file__)), "vuln_db")
-    REPORTS_DIR = os.path.join(os.path.dirname(os.path.dirname(__file__)), "reports")
+    if getattr(sys, 'frozen', False):
+        _BASE = sys._MEIPASS
+    else:
+        _BASE = os.path.dirname(os.path.dirname(__file__))
+    VULN_DB_DIR = os.path.join(_BASE, "vuln_db")
+    REPORTS_DIR = os.path.join(_BASE, "reports")
 
     def __init__(self):
         # Paramètres de scan

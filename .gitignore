@@ -1,1 +1,52 @@
-/scanner-reseau-wifi.md
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.egg-info/
+dist/
+build/
+*.spec
+*.egg
+
+# Logs
+logs/*.log
+*.log
+
+# Build PyInstaller
+redshield/build/
+redshield/dist/
+redshield/REDSHIELD.spec
+
+# Node
+redshield/node_modules/
+node_modules/
+package-lock.json
+
+# Base de donnees locale
+redshield/backend/data/*.db
+
+# Rapports generés (contiennent des IPs locales)
+reports/scan_*
+redshield/backend/reports/scan_*
+
+# Environnement
+.env
+.venv/
+venv/
+env/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+# Plans internes
+redshield-plan-complet.md
+redshield-radar-plan.md

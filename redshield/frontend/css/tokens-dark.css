@@ -1,0 +1,29 @@
+/* tokens-dark.css — Variables CSS du thème sombre Blood Red */
+[data-theme="dark"] {
+    --bg:           #0d0b0e;
+    --bg2:          #16121a;
+    --bg3:          #1e1824;
+    --bg-hover:     #241d2e;
+    --bg-term:      #0a080c;
+
+    --text:         #f0e8e8;
+    --text2:        #9a8a94;
+    --text3:        #5a4a54;
+
+    --accent:       #dc2626;
+    --accent-light: #f87171;
+    --accent-dim:   rgba(220,38,38,0.12);
+
+    --crit:         #ff3b5c;
+    --high:         #fb923c;
+    --med:          #facc15;
+    --low:          #4ade80;
+    --info:         #a78bfa;
+
+    --border:       rgba(220,38,38,0.1);
+    --border-sub:   rgba(255,255,255,0.04);
+    --shadow:       none;
+
+    --scrollbar-track: #16121a;
+    --scrollbar-thumb: #2a2030;
+}
