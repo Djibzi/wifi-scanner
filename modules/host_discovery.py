@@ -64,12 +64,69 @@ class OUILookup:
         "FC:F5:28": "ZTE", "00:1E:73": "ZTE",
         # Freebox
         "00:07:CB": "Freebox", "14:0C:76": "Freebox", "F4:CA:E5": "Freebox",
+        "8C:97:EA": "Freebox",
         # Livebox (Orange)
         "E8:AD:A6": "Sagemcom (Livebox)", "A4:4B:15": "Sagemcom (Livebox)",
         # SFR Box
         "00:1F:9F": "SFR", "C8:0E:14": "Technicolor (SFR)",
         # Bouygues
         "F8:08:4F": "Sercomm (Bbox)",
+        # LG
+        "00:AA:70": "LG", "C4:9A:02": "LG", "A8:23:FE": "LG",
+        # Sony
+        "00:04:1F": "Sony", "AC:9B:0A": "Sony", "04:5D:4B": "Sony",
+        # Lenovo
+        "00:06:1B": "Lenovo", "28:D2:44": "Lenovo", "50:7B:9D": "Lenovo",
+        # ASUS
+        "00:0C:6E": "ASUS", "2C:4D:54": "ASUS", "AC:22:05": "ASUS",
+        # OnePlus
+        "94:65:2D": "OnePlus", "C0:EE:FB": "OnePlus",
+        # OPPO
+        "2C:5B:E1": "OPPO", "A4:3B:FA": "OPPO",
+        # Realme
+        "FE:3E:E8": "Realme",
+        # Honor
+        "60:F2:62": "Honor",
+        # Motorola
+        "00:0A:28": "Motorola", "9C:D9:17": "Motorola",
+        # Roku
+        "B0:A7:37": "Roku", "D0:4D:C6": "Roku",
+        # Ring (Amazon)
+        "00:62:6E": "Ring (Amazon)",
+        # Wyze
+        "2C:AA:8E": "Wyze",
+        # Nest (Google)
+        "18:B4:30": "Nest (Google)", "64:16:66": "Nest (Google)",
+        # Bose
+        "04:52:C7": "Bose", "08:DF:1F": "Bose",
+        # Nintendo
+        "00:1F:32": "Nintendo", "E0:0C:7F": "Nintendo", "98:B6:E9": "Nintendo",
+        # Liteon / Realtek (composant WiFi courant)
+        "5C:5F:67": "Liteon/PC",
+        # Vestel (TV, décodeurs, objets connectés)
+        "A8:08:CF": "Vestel", "00:1A:E8": "Vestel",
+        # Tuya (IoT smart home)
+        "D8:F1:5B": "Tuya", "50:8A:06": "Tuya",
+        # Shenzhen (IoT chinois divers)
+        "B4:E6:2D": "Shenzhen/IoT",
+        # TCL / Thomson (TV)
+        "D0:D0:03": "TCL", "04:B1:67": "TCL",
+        # Hisense (TV)
+        "00:2D:DF": "Hisense", "CC:A1:2B": "Hisense",
+        # Roku
+        "CC:6D:A0": "Roku",
+        # Canon (imprimantes)
+        "00:1E:8F": "Canon", "18:0C:AC": "Canon",
+        # Epson (imprimantes)
+        "00:26:AB": "Epson", "64:EB:8C": "Epson",
+        # Brother (imprimantes)
+        "00:1B:A9": "Brother", "00:80:77": "Brother",
+        # Netatmo (IoT)
+        "70:EE:50": "Netatmo",
+        # Withings (IoT santé)
+        "00:24:E4": "Withings",
+        # Legrand / Netatmo
+        "00:04:74": "Legrand",
     }
 
     def lookup(self, mac):
@@ -81,15 +138,27 @@ class OUILookup:
         mac_clean = mac.upper().replace("-", ":")
         prefix = mac_clean[:8]
 
-        return self.OUI_DATABASE.get(prefix, "")
+        vendor = self.OUI_DATABASE.get(prefix, "")
+        if not vendor and self.is_random_mac(mac_clean):
+            return "(MAC aléatoire)"
+        return vendor
 
-    def guess_device_type(self, vendor, open_ports=None):
-        # Devine le type d'appareil à partir du fabricant et des ports ouverts
-        if not vendor:
-            return "Inconnu"
+    @staticmethod
+    def is_random_mac(mac):
+        # Détecte si une adresse MAC est aléatoire (locally-administered)
+        # Le bit 1 du premier octet est à 1 pour les MAC locales/aléatoires
+        # Les iPhones/Android modernes utilisent cette technique
+        try:
+            first_byte = int(mac.replace(":", "").replace("-", "")[:2], 16)
+            return bool(first_byte & 0x02)
+        except (ValueError, IndexError):
+            return False
 
-        vendor_lower = vendor.lower()
+    def guess_device_type(self, vendor, open_ports=None, os_guess="", hostname=""):
+        # Devine le type d'appareil à partir du fabricant, ports, OS et hostname
+        vendor_lower = (vendor or "").lower()
         open_ports = open_ports or []
+        hostname_lower = (hostname or "").lower()
 
         # Routeurs / Box opérateur
         if any(kw in vendor_lower for kw in ["freebox", "livebox", "sagemcom", "sfr",
@@ -98,16 +167,29 @@ class OUILookup:
             if 80 in open_ports or 443 in open_ports:
                 return "Routeur"
 
+        # TV / Décodeurs
+        if any(kw in vendor_lower for kw in ["vestel", "tcl", "hisense", "roku"]):
+            return "TV connectée"
+
+        # Imprimantes
+        if any(kw in vendor_lower for kw in ["canon", "epson", "brother"]):
+            return "Imprimante"
+
         # IoT
         if any(kw in vendor_lower for kw in ["espressif", "raspberry", "philips lighting",
-                                               "sonos", "xiaomi"]):
+                                               "sonos", "xiaomi", "tuya", "shenzhen",
+                                               "netatmo", "withings", "legrand"]):
             return "IoT"
 
-        # Apple
+        # Apple — vendor connu ou détecté via mDNS/ports
         if "apple" in vendor_lower:
-            if 62078 in open_ports:
+            if 62078 in open_ports or "iphone" in vendor_lower or "ipad" in vendor_lower:
                 return "iPhone/iPad"
             return "Apple (Mac/iPhone)"
+
+        # iPhone/iPad détecté via port Apple lockdown (62078) sans vendor
+        if 62078 in open_ports:
+            return "iPhone/iPad"
 
         # Samsung
         if "samsung" in vendor_lower:
@@ -130,6 +212,42 @@ class OUILookup:
         # PC / Serveur
         if any(kw in vendor_lower for kw in ["intel", "dell", "hp", "microsoft"]):
             return "PC"
+
+        # Détection par hostname
+        if hostname_lower:
+            if any(kw in hostname_lower for kw in ["iphone", "ipad"]):
+                return "iPhone/iPad"
+            if any(kw in hostname_lower for kw in ["macbook", "imac", "mac-"]):
+                return "Mac"
+            if any(kw in hostname_lower for kw in ["galaxy", "samsung", "sm-"]):
+                return "Smartphone Samsung"
+            if any(kw in hostname_lower for kw in ["huawei", "honor", "p30", "p40", "mate"]):
+                return "Smartphone Huawei"
+            if any(kw in hostname_lower for kw in ["pixel", "oneplus", "xiaomi", "redmi", "oppo"]):
+                return "Smartphone Android"
+            if any(kw in hostname_lower for kw in ["desktop", "laptop", "pc-", "workstation"]):
+                return "PC"
+            if any(kw in hostname_lower for kw in ["android", "phone"]):
+                return "Smartphone"
+
+        # Détection par MAC aléatoire + OS
+        if "aléatoire" in vendor_lower or "aleatoire" in vendor_lower:
+            os_lower = (os_guess or "").lower()
+            if "ios" in os_lower:
+                return "iPhone/iPad"
+            if "linux" in os_lower or "android" in os_lower:
+                return "Smartphone Android"
+            if "windows" in os_lower:
+                return "PC Windows (MAC privée)"
+            return "Smartphone (MAC privée)"
+
+        # Détection par OS si rien d'autre
+        if os_guess:
+            os_lower = os_guess.lower()
+            if "windows" in os_lower:
+                return "PC Windows"
+            if "linux" in os_lower:
+                return "Linux"
 
         return "Inconnu"
 
@@ -346,16 +464,197 @@ class HostDiscovery:
         if host.mac:
             host.vendor = self.oui.lookup(host.mac)
 
+        # Estimation OS basée sur le TTL
+        if host.ttl > 0:
+            host.os_guess = self._guess_os_from_ttl(host.ttl)
+
+        # Sonder le port 62078 (Apple lockdown) pour identifier les iPhones/iPads
+        if not host.vendor or "aléatoire" in (host.vendor or ""):
+            # Test port 62078 (Apple lockdown) — parfois fermé quand écran verrouillé
+            is_apple = self._quick_probe_port(host.ip, 62078)
+            # Test port 49152 (Apple service) — souvent ouvert sur iPhone
+            if not is_apple:
+                is_apple = self._quick_probe_port(host.ip, 49152)
+
+            if is_apple:
+                host.vendor = "Apple (iPhone/iPad)"
+                host.device_type = "iPhone/iPad"
+                self._resolve_device_name(host)
+                host.os_guess = "iOS"
+                return
+
+            # Sonder le port 5353 (mDNS/Bonjour) pour les appareils Apple
+            self._probe_mdns(host)
+
+        # Tenter de résoudre le nom si hostname vide
+        if not host.hostname:
+            self._resolve_device_name(host)
+
         # Détection gateway
         if gateway_ip and host.ip == gateway_ip:
             host.is_gateway = True
             host.device_type = "Routeur/Gateway"
         else:
-            host.device_type = self.oui.guess_device_type(host.vendor)
+            port_numbers = [p.number for p in host.open_ports] if host.open_ports else []
+            host.device_type = self.oui.guess_device_type(
+                host.vendor, port_numbers, host.os_guess, host.hostname
+            )
 
-        # Estimation OS basée sur le TTL
-        if host.ttl > 0:
-            host.os_guess = self._guess_os_from_ttl(host.ttl)
+    def _quick_probe_port(self, ip, port, timeout=0.3):
+        # Teste rapidement si un port est ouvert
+        try:
+            sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+            sock.settimeout(timeout)
+            result = sock.connect_ex((ip, port))
+            sock.close()
+            return result == 0
+        except Exception:
+            return False
+
+    def _resolve_device_name(self, host):
+        # Tente plusieurs méthodes pour obtenir le nom de l'appareil
+
+        # Méthode 1 : Requête mDNS PTR (Bonjour/Avahi)
+        try:
+            mdns_name = self._mdns_ptr_resolve(host.ip)
+            if mdns_name:
+                host.hostname = mdns_name
+                return
+        except Exception:
+            pass
+
+        # Méthode 2 : NetBIOS (Windows)
+        try:
+            netbios_name = self._netbios_resolve(host.ip)
+            if netbios_name:
+                host.hostname = netbios_name
+                return
+        except Exception:
+            pass
+
+        # Méthode 3 : Vérifier la table DHCP via la Freebox API (si applicable)
+        # Pas toujours disponible, on garde comme fallback
+
+    def _mdns_ptr_resolve(self, ip):
+        # Envoie une requête mDNS PTR pour résoudre IP -> nom.local
+        try:
+            parts = ip.split(".")
+            rev = ".".join(reversed(parts))
+            qname = f"{rev}.in-addr.arpa"
+
+            # Construire la requête DNS PTR
+            query = b"\x00\x00\x00\x00\x00\x01\x00\x00\x00\x00\x00\x00"
+            for part in qname.split("."):
+                query += bytes([len(part)]) + part.encode()
+            query += b"\x00\x00\x0c\x00\x01"  # PTR IN
+
+            sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM, socket.IPPROTO_UDP)
+            sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+            sock.settimeout(1.5)
+            sock.sendto(query, ("224.0.0.251", 5353))
+
+            data, addr = sock.recvfrom(4096)
+            sock.close()
+
+            # Extraire le nom depuis la réponse DNS
+            return self._extract_dns_name(data)
+        except Exception:
+            return None
+
+    def _extract_dns_name(self, data):
+        # Extrait un nom lisible depuis une réponse DNS
+        if len(data) < 12:
+            return None
+
+        # Parcourir les réponses (après le header de 12 bytes)
+        # Chercher des chaînes lisibles qui ressemblent à un nom d'appareil
+        readable = []
+        i = 12
+        while i < len(data):
+            length = data[i]
+            if length == 0 or length >= 0xC0:
+                i += 1
+                if length >= 0xC0:
+                    i += 1
+                continue
+            if i + 1 + length <= len(data):
+                try:
+                    part = data[i + 1:i + 1 + length].decode("utf-8")
+                    if part not in ("local", "in-addr", "arpa", "_tcp", "_udp") and len(part) > 1:
+                        if not part.replace(".", "").isdigit():
+                            readable.append(part)
+                except UnicodeDecodeError:
+                    pass
+            i += 1 + length
+
+        # Retourner le premier nom significatif
+        for name in readable:
+            if len(name) > 2 and not name.startswith("_"):
+                return name
+        return None
+
+    def _netbios_resolve(self, ip):
+        # Résout le nom NetBIOS d'un hôte Windows
+        try:
+            sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+            sock.settimeout(1)
+
+            # NetBIOS NBSTAT query (wildcard)
+            query = b"\x80\x94\x00\x00\x00\x01\x00\x00\x00\x00\x00\x00\x20"
+            # Encoder "*" (wildcard) en NetBIOS
+            name = b"*" + b"\x00" * 15
+            encoded = b""
+            for c in name:
+                encoded += bytes([((c >> 4) & 0x0F) + 0x41])
+                encoded += bytes([(c & 0x0F) + 0x41])
+            query += encoded
+            query += b"\x00\x00\x21\x00\x01"
+
+            sock.sendto(query, (ip, 137))
+            data, _ = sock.recvfrom(4096)
+            sock.close()
+
+            if len(data) > 57:
+                num_names = data[56]
+                if num_names > 0 and len(data) >= 57 + 18:
+                    name = data[57:57 + 15].decode("ascii", errors="replace").strip()
+                    if name and name != "*":
+                        return name
+        except Exception:
+            pass
+        return None
+
+    def _probe_mdns(self, host):
+        # Tente une requête mDNS pour identifier l'appareil
+        # Les appareils Apple répondent au mDNS même avec MAC aléatoire
+        try:
+            # Requête DNS inversée sur le lien local (.local)
+            if not host.hostname:
+                # Essayer la résolution mDNS via socket
+                try:
+                    name = socket.getfqdn(host.ip)
+                    if name and name != host.ip and "." in name:
+                        host.hostname = name
+                except Exception:
+                    pass
+
+            # Identifier via le hostname mDNS
+            if host.hostname:
+                hn = host.hostname.lower()
+                if "iphone" in hn or "ipad" in hn:
+                    if not host.vendor or "aléatoire" in host.vendor:
+                        host.vendor = "Apple (iPhone/iPad)"
+                elif "macbook" in hn or "imac" in hn or "mac" in hn:
+                    if not host.vendor or "aléatoire" in host.vendor:
+                        host.vendor = "Apple (Mac)"
+                elif "galaxy" in hn or "samsung" in hn:
+                    if not host.vendor or "aléatoire" in host.vendor:
+                        host.vendor = "Samsung"
+                elif "android" in hn or "pixel" in hn:
+                    if not host.vendor or "aléatoire" in host.vendor:
+                        host.vendor = "Android"
+        except Exception:
+            pass
 
     def _guess_os_from_ttl(self, ttl):
         # Estimation du système d'exploitation basée sur le TTL

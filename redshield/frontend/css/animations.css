@@ -1,0 +1,130 @@
+/* animations.css — Animations et transitions */
+
+/* Pulse pour les indicateurs actifs */
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+}
+
+/* Rotation pour les spinners */
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.spinner {
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--border-sub);
+    border-top-color: var(--accent);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+
+.spinner-lg {
+    width: 40px;
+    height: 40px;
+    border-width: 3px;
+}
+
+/* Fade in pour les pages */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.page-enter {
+    animation: fadeIn 0.2s ease forwards;
+}
+
+/* Slide in pour les alertes */
+@keyframes slideIn {
+    from { opacity: 0; transform: translateX(-10px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+.slide-in {
+    animation: slideIn 0.2s ease forwards;
+}
+
+/* Compteur animé */
+@keyframes countUp {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Toast notification */
+@keyframes toastIn {
+    from { opacity: 0; transform: translateX(100%); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes toastOut {
+    from { opacity: 1; transform: translateX(0); }
+    to { opacity: 0; transform: translateX(100%); }
+}
+
+.toast-container {
+    position: fixed;
+    top: 16px;
+    right: 16px;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.toast {
+    background: var(--bg2);
+    border: 1px solid var(--border-sub);
+    border-left: 3px solid var(--accent);
+    border-radius: 6px;
+    padding: 12px 16px;
+    min-width: 300px;
+    max-width: 400px;
+    animation: toastIn 0.3s ease forwards;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+.toast.toast-exit {
+    animation: toastOut 0.3s ease forwards;
+}
+
+.toast-success { border-left-color: var(--low); }
+.toast-warning { border-left-color: var(--med); }
+.toast-error { border-left-color: var(--crit); }
+
+.toast .toast-title {
+    font-weight: 600;
+    font-size: 0.85rem;
+    color: var(--text);
+}
+
+.toast .toast-message {
+    font-size: 0.8rem;
+    color: var(--text2);
+    margin-top: 2px;
+}
+
+/* Skeleton loading */
+@keyframes shimmer {
+    0% { background-position: -200px 0; }
+    100% { background-position: 200px 0; }
+}
+
+.skeleton {
+    background: linear-gradient(90deg, var(--bg3) 25%, var(--bg-hover) 50%, var(--bg3) 75%);
+    background-size: 400px 100%;
+    animation: shimmer 1.5s infinite;
+    border-radius: 4px;
+}
+
+.skeleton-text {
+    height: 14px;
+    margin: 4px 0;
+}
+
+.skeleton-card {
+    height: 120px;
+    border-radius: 8px;
+}

@@ -1,0 +1,73 @@
+/* network-map.css — Page carte réseau D3.js */
+
+.network-map-container {
+    position: relative;
+    width: 100%;
+    height: calc(100vh - 160px);
+    background: var(--bg2);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.network-map-container svg {
+    width: 100%;
+    height: 100%;
+}
+
+.network-map-legend {
+    position: absolute;
+    bottom: 16px;
+    left: 16px;
+    background: var(--bg);
+    border: 1px solid var(--border-sub);
+    border-radius: 6px;
+    padding: 12px 16px;
+    font-size: 0.8rem;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 4px 0;
+}
+
+.legend-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+}
+
+.network-detail-panel {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    width: 300px;
+    background: var(--bg);
+    border: 1px solid var(--border-sub);
+    border-radius: 8px;
+    padding: 16px;
+    display: none;
+}
+
+.network-detail-panel.visible {
+    display: block;
+    animation: fadeIn 0.2s ease;
+}
+
+.network-detail-panel h3 {
+    margin-bottom: 10px;
+    color: var(--accent-light);
+}
+
+.detail-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 4px 0;
+    font-size: 0.85rem;
+    border-bottom: 1px solid var(--border-sub);
+}
+
+.detail-row .detail-label {
+    color: var(--text2);
+}

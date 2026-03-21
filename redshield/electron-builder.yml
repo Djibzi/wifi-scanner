@@ -1,0 +1,21 @@
+appId: com.redshield.app
+productName: REDSHIELD
+
+extraResources:
+  - from: "backend/dist/server${ext}"
+    to: "backend/server${ext}"
+  - from: "backend/vuln_db/"
+    to: "backend/vuln_db/"
+
+win:
+  target: nsis
+  icon: frontend/assets/app-icon.ico
+  requestedExecutionLevel: requireAdministrator
+
+mac:
+  target: dmg
+  icon: frontend/assets/app-icon.icns
+
+linux:
+  target: [AppImage, deb]
+  icon: frontend/assets/app-icon.png

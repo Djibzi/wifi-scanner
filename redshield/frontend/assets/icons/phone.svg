@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="none">
+  <!-- Corps du téléphone -->
+  <rect x="13" y="4" width="22" height="40" rx="4" fill="#1e293b" stroke="#64748b" stroke-width="1.5"/>
+  <!-- Écran -->
+  <rect x="15.5" y="9" width="17" height="26" rx="1.5" fill="#0f172a"/>
+  <!-- Notch caméra -->
+  <rect x="20" y="5.5" width="8" height="2.5" rx="1.2" fill="#0f172a"/>
+  <!-- Bouton home -->
+  <circle cx="24" cy="39.5" r="2" fill="none" stroke="#475569" stroke-width="1"/>
+  <!-- Contenu écran - signal -->
+  <g stroke="#38bdf8" stroke-width="1.2" stroke-linecap="round" fill="none" opacity="0.8">
+    <circle cx="24" cy="24" r="1.5" fill="#38bdf8"/>
+    <path d="M20 21.5 Q24 18 28 21.5"/>
+    <path d="M17.5 19 Q24 14 30.5 19"/>
+  </g>
+  <!-- Barre de statut -->
+  <rect x="16" y="10" width="4" height="1" rx="0.5" fill="#38bdf8" opacity="0.5"/>
+  <rect x="28" y="10" width="4" height="1" rx="0.5" fill="#22c55e" opacity="0.5"/>
+</svg>

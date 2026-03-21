@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="none">
+  <!-- Corps manette -->
+  <path d="M8 22 C8 16 12 14 18 14 L30 14 C36 14 40 16 40 22 L40 28 C40 34 36 36 32 34 L30 32 L18 32 L16 34 C12 36 8 34 8 28 Z"
+        fill="#1e293b" stroke="#64748b" stroke-width="1.5"/>
+  <!-- Croix directionnelle -->
+  <rect x="13" y="21" width="8" height="3" rx="1" fill="#0f172a"/>
+  <rect x="15.5" y="18.5" width="3" height="8" rx="1" fill="#0f172a"/>
+  <!-- Boutons ABXY -->
+  <circle cx="33" cy="21" r="2" fill="#ef4444" opacity="0.7"/>
+  <circle cx="37" cy="25" r="2" fill="#22c55e" opacity="0.7"/>
+  <circle cx="29" cy="25" r="2" fill="#38bdf8" opacity="0.7"/>
+  <circle cx="33" cy="29" r="2" fill="#f59e0b" opacity="0.7"/>
+  <!-- Joystick -->
+  <circle cx="24" cy="26" r="3" fill="#0f172a" stroke="#475569" stroke-width="1"/>
+</svg>

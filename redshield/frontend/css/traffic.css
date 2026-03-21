@@ -1,0 +1,187 @@
+/* traffic.css — Page analyse de trafic + tableau de paquets */
+
+.traffic-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+    flex-wrap: wrap;
+}
+
+.traffic-filter {
+    flex: 1;
+    min-width: 180px;
+    max-width: 300px;
+}
+
+/* --- Tableau des paquets (style Wireshark) --- */
+
+.packet-list {
+    background: var(--bg1);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    overflow-y: auto;
+    max-height: 45vh;
+    margin-bottom: 16px;
+    font-size: 0.78rem;
+}
+
+.packet-table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+}
+
+.packet-table thead {
+    position: sticky;
+    top: 0;
+    z-index: 2;
+}
+
+.packet-table th {
+    background: var(--bg3);
+    color: var(--text2);
+    padding: 6px 8px;
+    text-align: left;
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-bottom: 1px solid var(--border);
+}
+
+.packet-table th:nth-child(1) { width: 45px; }   /* # */
+.packet-table th:nth-child(2) { width: 18%; }     /* Source */
+.packet-table th:nth-child(3) { width: 20px; }    /* → */
+.packet-table th:nth-child(4) { width: 18%; }     /* Dest */
+.packet-table th:nth-child(5) { width: 80px; }    /* Proto */
+.packet-table th:nth-child(6) { width: 55px; }    /* Taille */
+.packet-table th:nth-child(7) { }                 /* Info (reste) */
+
+.packet-row td {
+    padding: 3px 8px;
+    border-bottom: 1px solid var(--bg2);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: var(--text2);
+}
+
+.packet-row:hover td { background: var(--bg2); }
+
+.pkt-num { color: var(--text3); font-size: 0.7rem; }
+.pkt-arrow { color: var(--text3); text-align: center; }
+.pkt-name { font-weight: 500; }
+.pkt-size { color: var(--text3); text-align: right; }
+.pkt-info { color: var(--text3); font-size: 0.72rem; font-family: 'JetBrains Mono', monospace; }
+
+/* Couleurs par protocole */
+.packet-row.dns td { background: rgba(56, 189, 248, 0.06); }
+.packet-row.http td { background: rgba(34, 197, 94, 0.06); }
+.packet-row.tls td { background: rgba(168, 85, 247, 0.06); }
+.packet-row.arp td { background: rgba(245, 158, 11, 0.06); }
+.packet-row.icmp td { background: rgba(236, 72, 153, 0.06); }
+.packet-row.smb td { background: rgba(251, 146, 60, 0.06); }
+.packet-row.danger td { background: rgba(239, 68, 68, 0.08); }
+.packet-row.sys td { background: rgba(148, 163, 184, 0.05); }
+
+.pkt-proto { padding: 1px 6px; border-radius: 3px; font-size: 0.7rem; font-weight: 600; }
+.badge-dns { background: rgba(56, 189, 248, 0.2); color: #38bdf8; }
+.badge-http { background: rgba(34, 197, 94, 0.2); color: #22c55e; }
+.badge-tls { background: rgba(168, 85, 247, 0.2); color: #a855f7; }
+.badge-arp { background: rgba(245, 158, 11, 0.2); color: #f59e0b; }
+.badge-icmp { background: rgba(236, 72, 153, 0.2); color: #ec4899; }
+.badge-smb { background: rgba(251, 146, 60, 0.2); color: #fb923c; }
+.badge-danger { background: rgba(239, 68, 68, 0.25); color: #ef4444; }
+.badge-sys { background: rgba(148, 163, 184, 0.15); color: #94a3b8; }
+.badge-other { background: var(--bg3); color: var(--text3); }
+
+/* --- Stats en bas --- */
+
+.traffic-stats-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 12px;
+}
+
+.traffic-stat-card {
+    background: var(--bg2);
+    border-radius: 8px;
+    padding: 14px 16px;
+    box-shadow: var(--shadow);
+}
+
+.traffic-stat-card h4 {
+    font-size: 0.8rem;
+    color: var(--text3);
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    letter-spacing: 0.5px;
+}
+
+.traffic-stat-numbers {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.traffic-stat-numbers > div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Top talkers */
+.talker-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 6px 0;
+}
+
+.talker-name {
+    width: 130px;
+    font-size: 0.78rem;
+    font-weight: 500;
+    color: var(--text2);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.talker-bar {
+    flex: 1;
+    height: 5px;
+    background: var(--bg3);
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.talker-fill {
+    height: 100%;
+    border-radius: 3px;
+    background: var(--accent);
+}
+
+.talker-bytes {
+    font-size: 0.75rem;
+    color: var(--text3);
+    width: 55px;
+    text-align: right;
+}
+
+/* Proto breakdown */
+.proto-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 6px 0;
+}
+
+.proto-row .pkt-proto {
+    width: 65px;
+    text-align: center;
+}
+
+@media (max-width: 1000px) {
+    .traffic-stats-grid { grid-template-columns: 1fr; }
+}
