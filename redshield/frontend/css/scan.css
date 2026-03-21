@@ -1,0 +1,118 @@
+/* scan.css — Page de scan */
+
+.scan-header-info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.scan-progress-section {
+    margin-bottom: 24px;
+}
+
+.scan-progress-label {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    font-size: 0.85rem;
+}
+
+.scan-progress-module {
+    color: var(--text2);
+}
+
+.scan-progress-percent {
+    color: var(--accent-light);
+    font-weight: 600;
+    font-family: 'JetBrains Mono', monospace;
+}
+
+.scan-modules-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 10px;
+    margin-bottom: 24px;
+}
+
+.scan-module-card {
+    background: var(--bg2);
+    border-radius: 6px;
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border: 1px solid var(--border-sub);
+}
+
+.scan-module-card.module-running {
+    border-color: var(--accent);
+    background: var(--accent-dim);
+}
+
+.scan-module-card.module-done {
+    border-color: var(--low);
+}
+
+.scan-module-card.module-error {
+    border-color: var(--crit);
+}
+
+.module-status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--text3);
+    flex-shrink: 0;
+}
+
+.module-running .module-status-dot {
+    background: var(--accent);
+    animation: pulse 1s infinite;
+}
+
+.module-done .module-status-dot {
+    background: var(--low);
+}
+
+.module-error .module-status-dot {
+    background: var(--crit);
+}
+
+.scan-split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+.scan-discoveries {
+    background: var(--bg2);
+    border-radius: 8px;
+    padding: 16px;
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.scan-discoveries h3 {
+    font-size: 0.9rem;
+    color: var(--text2);
+    margin-bottom: 10px;
+}
+
+.discovery-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 0;
+    border-bottom: 1px solid var(--border-sub);
+    font-size: 0.85rem;
+    animation: slideIn 0.2s ease;
+}
+
+.scan-terminal-section {
+    max-height: 400px;
+}
+
+@media (max-width: 1000px) {
+    .scan-split { grid-template-columns: 1fr; }
+}

@@ -1,0 +1,29 @@
+/* tokens-light.css — Variables CSS du thème clair */
+[data-theme="light"] {
+    --bg:           #faf5f5;
+    --bg2:          #ffffff;
+    --bg3:          #f5eeee;
+    --bg-hover:     #f0e8e8;
+    --bg-term:      #f0eaea;
+
+    --text:         #1a0a0e;
+    --text2:        #7a5a64;
+    --text3:        #a08a94;
+
+    --accent:       #c41c1c;
+    --accent-light: #dc2626;
+    --accent-dim:   rgba(220,38,38,0.06);
+
+    --crit:         #c41c1c;
+    --high:         #c46a1c;
+    --med:          #a08a00;
+    --low:          #1c8a3c;
+    --info:         #6a4aaa;
+
+    --border:       rgba(220,38,38,0.12);
+    --border-sub:   #ecdcdc;
+    --shadow:       0 1px 3px rgba(100,40,40,0.06);
+
+    --scrollbar-track: #f5eeee;
+    --scrollbar-thumb: #d8c8cc;
+}

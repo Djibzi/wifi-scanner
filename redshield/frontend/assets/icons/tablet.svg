@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="none">
+  <!-- Corps tablette -->
+  <rect x="8" y="5" width="32" height="38" rx="4" fill="#1e293b" stroke="#64748b" stroke-width="1.5"/>
+  <!-- Écran -->
+  <rect x="10.5" y="9" width="27" height="27" rx="2" fill="#0f172a"/>
+  <!-- Caméra frontale -->
+  <circle cx="24" cy="7" r="1.2" fill="#0f172a" stroke="#475569" stroke-width="0.5"/>
+  <!-- Bouton home -->
+  <circle cx="24" cy="39.5" r="2.5" fill="none" stroke="#475569" stroke-width="1"/>
+  <!-- Contenu écran -->
+  <rect x="13" y="12" width="10" height="2" rx="1" fill="#38bdf8" opacity="0.5"/>
+  <rect x="13" y="16" width="22" height="6" rx="1.5" fill="#1e293b"/>
+  <rect x="13" y="24" width="10" height="8" rx="1" fill="#22c55e" opacity="0.2"/>
+  <rect x="25" y="24" width="10" height="8" rx="1" fill="#f59e0b" opacity="0.2"/>
+</svg>

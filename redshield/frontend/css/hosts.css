@@ -1,0 +1,125 @@
+/* hosts.css — Page appareils + détail */
+
+.hosts-toolbar {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+}
+
+.hosts-search {
+    flex: 1;
+    min-width: 200px;
+}
+
+.hosts-filters {
+    display: flex;
+    gap: 8px;
+}
+
+.filter-chip {
+    padding: 4px 12px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    cursor: pointer;
+    background: var(--bg3);
+    color: var(--text2);
+    border: 1px solid var(--border-sub);
+    transition: all 0.15s ease;
+}
+
+.filter-chip:hover,
+.filter-chip.active {
+    background: var(--accent-dim);
+    color: var(--accent-light);
+    border-color: var(--accent);
+}
+
+/* Détail d'un appareil */
+.host-detail-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--border-sub);
+}
+
+.host-detail-icon {
+    width: 48px;
+    height: 48px;
+    background: var(--accent-dim);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.host-detail-info h2 {
+    font-size: 1.2rem;
+}
+
+.host-detail-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 12px;
+    margin-bottom: 24px;
+}
+
+.host-detail-field {
+    background: var(--bg2);
+    border-radius: 6px;
+    padding: 10px 14px;
+}
+
+.host-detail-field .field-label {
+    font-size: 0.7rem;
+    color: var(--text3);
+    text-transform: uppercase;
+}
+
+.host-detail-field .field-value {
+    font-size: 0.95rem;
+    font-weight: 600;
+}
+
+.host-detail-section {
+    margin-bottom: 24px;
+}
+
+.host-detail-section h3 {
+    font-size: 1rem;
+    margin-bottom: 12px;
+    color: var(--text2);
+    display: flex;
+    align-items: center;
+}
+
+/* Badges protocole pour les paquets */
+.proto-badge {
+    padding: 2px 8px;
+    border-radius: 3px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+}
+.proto-dns     { background: #1e3a5f; color: #7dd3fc; }
+.proto-http    { background: #7f1d1d; color: #fca5a5; }
+.proto-https   { background: #065f46; color: #6ee7b7; }
+.proto-arp     { background: #78350f; color: #fcd34d; }
+.proto-ssh     { background: #312e81; color: #a5b4fc; }
+.proto-ftp     { background: #7c2d12; color: #fdba74; }
+.proto-telnet  { background: #7f1d1d; color: #fca5a5; }
+.proto-icmp    { background: #1e293b; color: #94a3b8; }
+.proto-smb     { background: #581c87; color: #d8b4fe; }
+.proto-other   { background: var(--bg3); color: var(--text2); }
+
+/* Table paquets scroll */
+#host-packets-table {
+    scrollbar-width: thin;
+    scrollbar-color: var(--border-sub) transparent;
+}
+#host-packets-table::-webkit-scrollbar { width: 6px; }
+#host-packets-table::-webkit-scrollbar-thumb { background: var(--border-sub); border-radius: 3px; }

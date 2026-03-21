@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="none">
+  <!-- Corps enceinte connectée -->
+  <path d="M16 12 C16 8 20 6 24 6 C28 6 32 8 32 12 L32 36 C32 40 28 42 24 42 C20 42 16 40 16 36 Z"
+        fill="#1e293b" stroke="#64748b" stroke-width="1.5"/>
+  <!-- Grille haut-parleur -->
+  <g stroke="#0f172a" stroke-width="0.8" opacity="0.6">
+    <line x1="18" y1="16" x2="30" y2="16"/>
+    <line x1="18" y1="19" x2="30" y2="19"/>
+    <line x1="18" y1="22" x2="30" y2="22"/>
+    <line x1="18" y1="25" x2="30" y2="25"/>
+    <line x1="18" y1="28" x2="30" y2="28"/>
+  </g>
+  <!-- LED status -->
+  <circle cx="24" cy="35" r="2.5" fill="#38bdf8" opacity="0.7">
+    <animate attributeName="opacity" values="0.4;0.8;0.4" dur="3s" repeatCount="indefinite"/>
+  </circle>
+  <!-- Ondes sonores -->
+  <g stroke="#38bdf8" stroke-width="1" fill="none" opacity="0.3">
+    <path d="M34 18 Q38 22 34 26"/>
+    <path d="M36 15 Q42 22 36 29"/>
+  </g>
+</svg>

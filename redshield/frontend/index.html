@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' http://127.0.0.1:* ws://127.0.0.1:*; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; connect-src 'self' http://127.0.0.1:* ws://127.0.0.1:*; img-src 'self' data:;">
+    <title>REDSHIELD</title>
+    <link rel="icon" type="image/svg+xml" href="assets/app-icon.svg">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/tokens-dark.css">
+    <link rel="stylesheet" href="css/tokens-light.css">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/scan.css">
+    <link rel="stylesheet" href="css/network-map.css">
+    <link rel="stylesheet" href="css/hosts.css">
+    <link rel="stylesheet" href="css/vulns.css">
+    <link rel="stylesheet" href="css/traffic.css">
+    <link rel="stylesheet" href="css/report.css">
+    <link rel="stylesheet" href="css/settings.css">
+    <link rel="stylesheet" href="css/radar.css">
+</head>
+<body>
+    <div class="app-shell">
+
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <img class="sidebar-logo" src="assets/app-icon.svg" alt="REDSHIELD" width="36" height="36"/>
+                <span class="sidebar-title">REDSHIELD</span>
+            </div>
+
+            <nav class="sidebar-nav">
+                <div class="nav-item active" data-page="dashboard">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="3" width="7" height="7" rx="1"/>
+                        <rect x="14" y="3" width="7" height="7" rx="1"/>
+                        <rect x="3" y="14" width="7" height="7" rx="1"/>
+                        <rect x="14" y="14" width="7" height="7" rx="1"/>
+                    </svg>
+                    <span>Dashboard</span>
+                </div>
+
+                <div class="nav-item" data-page="scan">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="3"/>
+                        <path d="M12 2a10 10 0 0 1 10 10"/>
+                        <path d="M12 6a6 6 0 0 1 6 6"/>
+                    </svg>
+                    <span>Scanner</span>
+                </div>
+
+                <div class="nav-item" data-page="network-map">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="5" r="2"/>
+                        <circle cx="5" cy="19" r="2"/>
+                        <circle cx="19" cy="19" r="2"/>
+                        <line x1="12" y1="7" x2="5" y2="17"/>
+                        <line x1="12" y1="7" x2="19" y2="17"/>
+                    </svg>
+                    <span>Carte réseau</span>
+                </div>
+
+                <div class="nav-item" data-page="radar">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"/>
+                        <circle cx="12" cy="12" r="6"/>
+                        <circle cx="12" cy="12" r="2"/>
+                        <line x1="12" y1="2" x2="12" y2="12"/>
+                    </svg>
+                    <span>Radar</span>
+                </div>
+
+                <div class="nav-separator"></div>
+
+                <div class="nav-item" data-page="hosts">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="2" y="3" width="20" height="14" rx="2"/>
+                        <line x1="8" y1="21" x2="16" y2="21"/>
+                        <line x1="12" y1="17" x2="12" y2="21"/>
+                    </svg>
+                    <span>Appareils</span>
+                </div>
+
+                <div class="nav-item" data-page="vulnerabilities">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
+                        <line x1="12" y1="9" x2="12" y2="13"/>
+                        <line x1="12" y1="17" x2="12.01" y2="17"/>
+                    </svg>
+                    <span>Vulnérabilités</span>
+                </div>
+
+                <div class="nav-item" data-page="traffic">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+                    </svg>
+                    <span>Trafic</span>
+                </div>
+
+                <div class="nav-separator"></div>
+
+                <div class="nav-item" data-page="report">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                        <polyline points="14 2 14 8 20 8"/>
+                        <line x1="16" y1="13" x2="8" y2="13"/>
+                        <line x1="16" y1="17" x2="8" y2="17"/>
+                    </svg>
+                    <span>Rapport</span>
+                </div>
+
+                <div class="nav-item" data-page="settings">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="3"/>
+                        <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+                    </svg>
+                    <span>Paramètres</span>
+                </div>
+            </nav>
+
+            <div class="sidebar-footer">
+                <span class="text-dim" style="font-size:0.75rem">v1.0.0</span>
+                <div id="theme-toggle" class="tooltip" data-tooltip="Changer le thème">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="cursor:pointer;color:var(--text2)">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+                    </svg>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Contenu principal -->
+        <main class="main-content">
+            <div class="page-header">
+                <h1 id="page-title">Dashboard</h1>
+                <div id="page-actions"></div>
+            </div>
+
+            <div class="page-body" id="page-content">
+                <!-- Contenu injecté dynamiquement par le routeur -->
+                <div class="page-enter" id="page-dashboard"></div>
+            </div>
+
+            <!-- Status bar -->
+            <div class="status-bar">
+                <div>
+                    <span class="status-dot offline" id="status-dot"></span>
+                    <span id="status-text">Backend déconnecté</span>
+                </div>
+                <div id="status-right">
+                    <span id="status-scan"></span>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Toast container -->
+    <div class="toast-container" id="toast-container"></div>
+
+    <!-- Libraries -->
+    <script src="js/lib/socket.io.min.js"></script>
+
+    <!-- App JS -->
+    <script src="js/store.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/websocket.js"></script>
+    <script src="js/theme.js"></script>
+    <script src="js/components/toast.js"></script>
+    <script src="js/components/metric-card.js"></script>
+    <script src="js/components/severity-badge.js"></script>
+    <script src="js/components/progress-bar.js"></script>
+    <script src="js/components/terminal.js"></script>
+    <script src="js/components/score-gauge.js"></script>
+    <script src="js/components/alert-row.js"></script>
+    <script src="js/utils/device-icons.js"></script>
+    <script src="js/components/host-table.js"></script>
+    <script src="js/components/vuln-card.js"></script>
+    <script src="js/components/theme-toggle.js"></script>
+    <script src="js/components/charts.js"></script>
+    <script src="js/pages/dashboard.js"></script>
+    <script src="js/pages/scan.js"></script>
+    <script src="js/pages/network-map.js"></script>
+    <script src="js/pages/hosts.js"></script>
+    <script src="js/pages/host-detail.js"></script>
+    <script src="js/pages/vulnerabilities.js"></script>
+    <script src="js/pages/traffic.js"></script>
+    <script src="js/pages/report.js"></script>
+    <script src="js/pages/radar.js"></script>
+    <script src="js/pages/settings.js"></script>
+    <script src="js/router.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

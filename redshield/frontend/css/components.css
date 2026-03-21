@@ -1,0 +1,347 @@
+/* components.css — Cartes, badges, barres, boutons, tableaux */
+
+/* --- Boutons --- */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.btn-primary {
+    background: var(--accent);
+    color: var(--text);
+}
+.btn-primary:hover { background: var(--accent-light); }
+
+.btn-secondary {
+    background: var(--bg3);
+    color: var(--text);
+    border: 1px solid var(--border-sub);
+}
+.btn-secondary:hover { background: var(--bg-hover); }
+
+.btn-danger {
+    background: var(--crit);
+    color: var(--text);
+}
+
+.btn-sm {
+    padding: 4px 10px;
+    font-size: 0.8rem;
+}
+
+.btn-lg {
+    padding: 12px 24px;
+    font-size: 1rem;
+}
+
+.btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* --- Cartes métriques --- */
+.metric-card {
+    background: var(--bg2);
+    border-radius: 8px;
+    padding: 16px 20px;
+    border-top: 2px solid var(--accent);
+    box-shadow: var(--shadow);
+    transition: transform 0.15s ease;
+}
+
+.metric-card:hover {
+    transform: translateY(-2px);
+}
+
+.metric-card .metric-label {
+    font-size: 0.8rem;
+    color: var(--text2);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.metric-card .metric-value {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--text);
+    font-family: 'JetBrains Mono', monospace;
+    line-height: 1.2;
+    margin: 4px 0;
+}
+
+.metric-card .metric-sub {
+    font-size: 0.8rem;
+    color: var(--text3);
+}
+
+.metric-card.card-crit { border-top-color: var(--crit); }
+.metric-card.card-crit .metric-value { color: var(--crit); }
+
+.metric-card.card-high { border-top-color: var(--high); }
+.metric-card.card-high .metric-value { color: var(--high); }
+
+.metric-card.card-med { border-top-color: var(--med); }
+
+.metric-card.card-low { border-top-color: var(--low); }
+.metric-card.card-low .metric-value { color: var(--low); }
+
+/* --- Badges de sévérité --- */
+.badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    font-family: 'JetBrains Mono', monospace;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.badge-crit { background: rgba(255,59,92,0.15); color: var(--crit); }
+.badge-high { background: rgba(251,146,60,0.15); color: var(--high); }
+.badge-med  { background: rgba(250,204,21,0.15); color: var(--med); }
+.badge-low  { background: rgba(74,222,128,0.15); color: var(--low); }
+.badge-info { background: rgba(167,139,250,0.15); color: var(--info); }
+
+/* --- Barre de progression --- */
+.progress-bar {
+    width: 100%;
+    height: 6px;
+    background: var(--bg3);
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.progress-bar .progress-fill {
+    height: 100%;
+    border-radius: 3px;
+    background: #ef4444;
+    transition: width 0.3s ease;
+}
+
+.progress-bar-lg {
+    height: 10px;
+    border-radius: 5px;
+}
+
+.progress-bar-lg .progress-fill {
+    border-radius: 5px;
+}
+
+/* --- Tableaux --- */
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.data-table th {
+    text-align: left;
+    padding: 10px 12px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--text2);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-bottom: 1px solid var(--border-sub);
+    background: var(--bg2);
+}
+
+.data-table td {
+    padding: 10px 12px;
+    font-size: 0.85rem;
+    border-bottom: 1px solid var(--border-sub);
+    color: var(--text);
+}
+
+.data-table tr:hover td {
+    background: var(--bg-hover);
+}
+
+.data-table tr { cursor: pointer; }
+
+/* --- Cartes d'alerte --- */
+.alert-card {
+    background: var(--bg2);
+    border-radius: 6px;
+    padding: 12px 16px;
+    margin-bottom: 8px;
+    border-left: 3px solid var(--border);
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    box-shadow: var(--shadow);
+}
+
+.alert-card.alert-crit { border-left-color: var(--crit); }
+.alert-card.alert-high { border-left-color: var(--high); }
+.alert-card.alert-med { border-left-color: var(--med); }
+.alert-card.alert-low { border-left-color: var(--low); }
+.alert-card.alert-info { border-left-color: var(--info); }
+
+.alert-card .alert-title {
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.alert-card .alert-desc {
+    font-size: 0.8rem;
+    color: var(--text2);
+    margin-top: 2px;
+}
+
+/* --- Terminal --- */
+.terminal {
+    background: var(--bg-term);
+    border-radius: 6px;
+    padding: 12px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8rem;
+    line-height: 1.6;
+    overflow-y: auto;
+    color: var(--text2);
+    max-height: 400px;
+}
+
+.terminal .log-info { color: var(--text2); }
+.terminal .log-success { color: var(--low); }
+.terminal .log-warning { color: var(--med); }
+.terminal .log-error { color: var(--crit); }
+.terminal .log-time { color: var(--text3); margin-right: 8px; }
+
+/* --- Inputs --- */
+.input {
+    background: var(--bg3);
+    border: 1px solid var(--border-sub);
+    border-radius: 6px;
+    padding: 8px 12px;
+    color: var(--text);
+    font-size: 0.85rem;
+    outline: none;
+    transition: border-color 0.15s ease;
+}
+
+.input:focus {
+    border-color: var(--accent);
+}
+
+.input::placeholder {
+    color: var(--text3);
+}
+
+/* --- Grille responsive --- */
+.grid-4 {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+}
+
+.grid-3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+}
+
+.grid-2 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+}
+
+@media (max-width: 1200px) {
+    .grid-4 { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 800px) {
+    .grid-4, .grid-3 { grid-template-columns: 1fr; }
+}
+
+/* --- Jauge circulaire (score) --- */
+.score-gauge {
+    width: 160px;
+    height: 160px;
+    position: relative;
+}
+
+.score-gauge svg {
+    transform: rotate(-90deg);
+}
+
+.score-gauge .gauge-bg {
+    fill: none;
+    stroke: var(--bg3);
+    stroke-width: 10;
+}
+
+.score-gauge .gauge-fill {
+    fill: none;
+    stroke-width: 10;
+    stroke-linecap: round;
+    transition: stroke-dashoffset 1s ease;
+}
+
+.score-gauge .gauge-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.score-gauge .gauge-value {
+    font-size: 2.5rem;
+    font-weight: 800;
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--text);
+}
+
+.score-gauge .gauge-label {
+    font-size: 0.75rem;
+    color: var(--text2);
+}
+
+/* --- Tags / Chips --- */
+.tag {
+    display: inline-flex;
+    align-items: center;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    background: var(--bg3);
+    color: var(--text2);
+    gap: 4px;
+}
+
+/* --- Tooltip --- */
+.tooltip {
+    position: relative;
+}
+
+.tooltip::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: calc(100% + 6px);
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--bg2);
+    color: var(--text);
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.15s ease;
+    border: 1px solid var(--border-sub);
+}
+
+.tooltip:hover::after {
+    opacity: 1;
+}
