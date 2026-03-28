@@ -22,12 +22,12 @@ REDSHIELD est un outil d'audit de securite reseau qui analyse votre WiFi, detect
 - **Analyse WiFi** — Evaluation du chiffrement, force du signal, configuration du routeur
 - **Analyse DNS** — Detection de serveurs DNS suspects ou non securises
 - **Rapports** — Generation HTML, Markdown et JSON avec score de securite global
-- **🔓 Portal (v1.1)** — Module de bypass des portails captifs (detection, chasse aux clients, MAC spoofing, audit)
+- **Portal (v1.1)** — Module de bypass des portails captifs (detection, chasse aux clients, MAC spoofing, audit)
 - **Theme dark/light** — Interface adaptable selon vos preferences
 
 ---
 
-## Nouveaute v1.1 — Captive Portal Bypass
+## Nouveaute v1.1 - Captive Portal Bypass
 
 La version 1.1 ajoute un module complet de contournement des portails captifs.
 
@@ -176,7 +176,7 @@ wifi-scanner/
 4. **Vulnerabilites** — Liste des failles detectees classees par severite
 5. **Radar** — Visualisation temps reel des appareils avec ping
 6. **Trafic** — Analyse passive du trafic reseau
-7. **🔓 Portal** — Bypass de portail captif (detection → clients → spoof → audit)
+7. **Portal** — Bypass de portail captif (detection → clients → spoof → audit)
 8. **Rapports** — Generation de rapports exportables
 
 ---
