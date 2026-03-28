@@ -135,5 +135,57 @@
                 "description": "SMTP smuggling — contournement de l'authentification SPF/DKIM"
             }
         ]
+    },
+    "captive_portal": {
+        "mac_only_auth": [
+            {
+                "cve": null,
+                "cvss": 9.1,
+                "severity": "CRITIQUE",
+                "name": "Authentification par MAC uniquement",
+                "description": "Le portail captif utilise uniquement l'adresse MAC pour identifier les clients autorisés. L'adresse MAC est visible en clair dans les trames réseau et peut être copiée par n'importe quel appareil. Un attaquant peut usurper la MAC d'un client autorisé pour contourner le portail sans authentification.",
+                "remediation": "Implémenter 802.1X avec authentification par certificat ou login/password. À défaut, combiner MAC + IP + cookie de session + timeout court."
+            }
+        ],
+        "no_client_isolation": [
+            {
+                "cve": null,
+                "cvss": 8.5,
+                "severity": "CRITIQUE",
+                "name": "Pas d'isolation entre les clients",
+                "description": "Les appareils connectés au même réseau WiFi peuvent voir le trafic des autres clients. Cela permet l'identification des adresses MAC autorisées, l'interception de trafic (ARP spoofing), et facilite le contournement du portail captif.",
+                "remediation": "Activer AP Isolation (ou Client Isolation) sur le point d'accès WiFi. Configurer des ACLs pour empêcher le trafic inter-clients."
+            }
+        ],
+        "http_portal": [
+            {
+                "cve": null,
+                "cvss": 7.4,
+                "severity": "HAUTE",
+                "name": "Portail captif en HTTP (pas HTTPS)",
+                "description": "La page de connexion du portail est servie en HTTP. Les identifiants saisis par les utilisateurs transitent en clair sur le réseau et peuvent être interceptés.",
+                "remediation": "Configurer HTTPS sur le portail captif avec un certificat valide."
+            }
+        ],
+        "no_session_timeout": [
+            {
+                "cve": null,
+                "cvss": 6.8,
+                "severity": "HAUTE",
+                "name": "Pas de timeout de session",
+                "description": "Les autorisations du portail captif n'expirent pas ou ont un timeout très long. Un MAC spoofé reste valide indéfiniment.",
+                "remediation": "Configurer un timeout de session de 30 à 60 minutes maximum. Forcer la réauthentification périodique."
+            }
+        ],
+        "proxy_info_leak": [
+            {
+                "cve": null,
+                "cvss": 5.3,
+                "severity": "MOYENNE",
+                "name": "Fuite d'information du proxy",
+                "description": "Le proxy (Squid ou autre) révèle sa version, son nom d'hôte et des détails de configuration dans les messages d'erreur.",
+                "remediation": "Configurer le proxy pour masquer les informations de version dans les pages d'erreur."
+            }
+        ]
     }
 }

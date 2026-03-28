@@ -28,6 +28,7 @@ class Router {
             'host-detail': 'Détail appareil',
             'vulnerabilities': 'Vulnérabilités',
             'traffic': 'Trafic réseau',
+            'portal': '🔓 Portal',
             'report': 'Rapport',
             'settings': 'Paramètres',
         };

@@ -1,0 +1,121 @@
+{
+  "nodogsplash": {
+    "name": "Nodogsplash",
+    "checks": [
+      {"type": "html",   "value": "nodogsplash"},
+      {"type": "html",   "value": "nds_"},
+      {"type": "header", "value": "nodogsplash"},
+      {"type": "url",    "value": ":2050/"},
+      {"type": "url",    "value": "nodogsplash"}
+    ],
+    "default_port": 2050,
+    "auth_method": "mac_only",
+    "description": "Portail captif open-source commun sur OpenWrt"
+  },
+  "coovachilli": {
+    "name": "CoovaChilli",
+    "checks": [
+      {"type": "html",   "value": "coovachilli"},
+      {"type": "html",   "value": "chilli"},
+      {"type": "header", "value": "coovachilli"},
+      {"type": "url",    "value": "/json/status"},
+      {"type": "url",    "value": "chilli"}
+    ],
+    "default_port": 3990,
+    "auth_method": "credentials",
+    "description": "Solution de portail captif RADIUS-ready"
+  },
+  "cisco_wlc": {
+    "name": "Cisco WLC",
+    "checks": [
+      {"type": "header", "value": "cisco"},
+      {"type": "html",   "value": "cisco systems"},
+      {"type": "url",    "value": "/login.html"},
+      {"type": "html",   "value": "wireless lan controller"}
+    ],
+    "default_port": 8080,
+    "auth_method": "credentials",
+    "description": "Cisco Wireless LAN Controller"
+  },
+  "unifi": {
+    "name": "UniFi Guest Portal",
+    "checks": [
+      {"type": "url",    "value": "/guest/s/"},
+      {"type": "html",   "value": "ubiquiti"},
+      {"type": "html",   "value": "unifi"},
+      {"type": "header", "value": "ubiquiti"}
+    ],
+    "default_port": 8880,
+    "auth_method": "credentials",
+    "description": "Portail invité Ubiquiti UniFi"
+  },
+  "pfsense": {
+    "name": "pfSense Captive Portal",
+    "checks": [
+      {"type": "html",   "value": "pfsense"},
+      {"type": "url",    "value": "/captiveportal/"},
+      {"type": "html",   "value": "netgate"},
+      {"type": "html",   "value": "pfSense"}
+    ],
+    "default_port": 8002,
+    "auth_method": "credentials",
+    "description": "Portail captif intégré à pfSense/OPNsense"
+  },
+  "openwrt": {
+    "name": "OpenWrt LuCI",
+    "checks": [
+      {"type": "html",   "value": "luci"},
+      {"type": "html",   "value": "openwrt"},
+      {"type": "url",    "value": "/cgi-bin/luci"}
+    ],
+    "default_port": 80,
+    "auth_method": "credentials",
+    "description": "Interface web OpenWrt avec portail captif"
+  },
+  "aruba": {
+    "name": "Aruba ClearPass",
+    "checks": [
+      {"type": "header", "value": "aruba"},
+      {"type": "html",   "value": "aruba networks"},
+      {"type": "url",    "value": "/cgi-bin/login"},
+      {"type": "html",   "value": "clearpass"}
+    ],
+    "default_port": 443,
+    "auth_method": "credentials",
+    "description": "Aruba Networks ClearPass Policy Manager"
+  },
+  "meraki": {
+    "name": "Cisco Meraki",
+    "checks": [
+      {"type": "header", "value": "meraki"},
+      {"type": "html",   "value": "meraki"},
+      {"type": "url",    "value": "meraki.com"},
+      {"type": "html",   "value": "cisco meraki"}
+    ],
+    "default_port": 443,
+    "auth_method": "social",
+    "description": "Cisco Meraki Splash Page"
+  },
+  "mikrotik": {
+    "name": "MikroTik HotSpot",
+    "checks": [
+      {"type": "html",   "value": "mikrotik"},
+      {"type": "html",   "value": "hotspot"},
+      {"type": "header", "value": "mikrotik"},
+      {"type": "url",    "value": "/login"}
+    ],
+    "default_port": 80,
+    "auth_method": "credentials",
+    "description": "MikroTik RouterOS HotSpot"
+  },
+  "chillispot": {
+    "name": "ChilliSpot",
+    "checks": [
+      {"type": "html",   "value": "chillispot"},
+      {"type": "url",    "value": "chillispot"}
+    ],
+    "default_port": 3990,
+    "auth_method": "credentials",
+    "description": "Précurseur open-source de CoovaChilli"
+  }
+}

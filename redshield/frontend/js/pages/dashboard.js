@@ -32,11 +32,29 @@ class DashboardPage {
         const vulns = store.get('vulnerabilities') || [];
         const score = store.get('score') || 0;
         const grade = store.get('grade') || '—';
+        const portalDetect = store.get('portalDetect');
 
         const critCount = vulns.filter(v => v.severity === 'CRITIQUE').length;
         const highCount = vulns.filter(v => v.severity === 'HAUTE').length;
 
+        // Bandeau portail captif
+        const portalBanner = portalDetect && portalDetect.detected ? `
+            <div class="dashboard-portal-banner" onclick="router.navigate('portal')" style="cursor:pointer">
+                <div class="portal-banner-icon">🔓</div>
+                <div class="portal-banner-body">
+                    <div class="portal-banner-title">PORTAIL CAPTIF DÉTECTÉ</div>
+                    <div class="portal-banner-detail">
+                        Type : ${portalDetect.type || 'inconnu'}
+                        · Statut : ${portalDetect.portal_status === 'down' ? '⚠ En panne' : portalDetect.portal_status || '?'}
+                        · Auth : ${portalDetect.auth_method === 'mac_only' ? 'MAC uniquement' : portalDetect.auth_method || '?'}
+                    </div>
+                </div>
+                <button class="btn btn-sm btn-outline" style="flex-shrink:0">Ouvrir le module Portal →</button>
+            </div>
+        ` : '';
+
         this.container.innerHTML = `
+            ${portalBanner}
             <!-- Bandeau WiFi -->
             <div class="dashboard-wifi-bar">
                 <div class="wifi-bar-item">

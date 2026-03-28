@@ -1,5 +1,46 @@
 /* dashboard.css — Page tableau de bord */
 
+/* Bandeau portail captif */
+.dashboard-portal-banner {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: rgba(220, 38, 38, 0.1);
+    border: 1px solid rgba(220, 38, 38, 0.4);
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin-bottom: 16px;
+    transition: background 0.15s;
+}
+
+.dashboard-portal-banner:hover {
+    background: rgba(220, 38, 38, 0.15);
+}
+
+.portal-banner-icon {
+    font-size: 1.5rem;
+    flex-shrink: 0;
+}
+
+.portal-banner-body {
+    flex: 1;
+    min-width: 0;
+}
+
+.portal-banner-title {
+    font-weight: 700;
+    font-size: 0.875rem;
+    letter-spacing: 0.04em;
+    color: var(--danger, #dc2626);
+    text-transform: uppercase;
+}
+
+.portal-banner-detail {
+    font-size: 0.8rem;
+    color: var(--text2);
+    margin-top: 2px;
+}
+
 .dashboard-wifi-bar {
     background: var(--bg2);
     border-radius: 8px;

@@ -88,6 +88,37 @@ class WebSocketClient {
             Toast.warning('Alerte trafic', data.message || data.name);
         });
 
+        // --- Portail Captif ---
+
+        this.socket.on('portal:detected', (data) => {
+            // Stocker dans le store pour le dashboard
+            const existing = store.get('portalDetect') || {};
+            if (!existing.detected) {
+                store.set('portalDetect', { ...data, detected: true });
+                Toast.warning('Portail captif', `Type détecté : ${data.type || 'inconnu'}`);
+            }
+        });
+
+        this.socket.on('portal:client_found', (data) => {
+            const clients = store.get('portalClients') || [];
+            const existing = clients.find(c => c.mac === data.mac);
+            if (!existing) {
+                store.set('portalClients', [...clients, data]);
+            }
+        });
+
+        this.socket.on('portal:clients_update', (data) => {
+            // Délégué à la page Portal si active
+        });
+
+        this.socket.on('portal:spoof_progress', (data) => {
+            // Délégué à la page Portal
+        });
+
+        this.socket.on('portal:spoof_result', (data) => {
+            // Délégué à la page Portal
+        });
+
         // --- Logs ---
 
         this.socket.on('log:entry', (data) => {

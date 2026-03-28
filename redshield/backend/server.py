@@ -44,6 +44,7 @@ from api.routes_report import report_bp
 from api.routes_settings import settings_bp, init_settings_routes
 from api.routes_wifi import wifi_bp
 from api.routes_radar import radar_bp, init_radar_routes
+from api.routes_portal import portal_bp, init_portal_routes
 from modules.radar_engine import RadarEngine
 
 
@@ -83,6 +84,7 @@ app.register_blueprint(report_bp, url_prefix='/api')
 app.register_blueprint(settings_bp, url_prefix='/api')
 app.register_blueprint(wifi_bp, url_prefix='/api')
 app.register_blueprint(radar_bp, url_prefix='/api')
+app.register_blueprint(portal_bp, url_prefix='/api')
 
 # --- Moteur radar ---
 radar_engine = RadarEngine(events=events)
@@ -92,6 +94,7 @@ init_scan_routes(scan_state, db, events)
 init_traffic_routes(events)
 init_settings_routes(db)
 init_radar_routes(radar_engine, scan_state, events)
+init_portal_routes(events)
 
 
 # --- Servir le frontend ---
@@ -107,7 +110,7 @@ def serve_frontend():
 def health():
     return jsonify({
         'status': 'ok',
-        'version': '1.0.0',
+        'version': '1.1.0',
         'name': 'REDSHIELD',
     })
 

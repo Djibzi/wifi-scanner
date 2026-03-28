@@ -31,6 +31,7 @@ class App {
         router.register('traffic', new TrafficPage());
         router.register('report', new ReportPage());
         router.register('settings', new SettingsPage());
+        router.register('portal', new PortalPage());
 
         // Connexion au backend
         await this._connectBackend();

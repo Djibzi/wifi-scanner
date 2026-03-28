@@ -109,6 +109,57 @@ class ApiClient {
     async getHistory() {
         return this._fetch('/api/history');
     }
+
+    // --- Helpers génériques pour les routes dynamiques ---
+    async get(path) {
+        return this._fetch(`/api${path}`);
+    }
+
+    async post(path, data) {
+        return this._fetch(`/api${path}`, {
+            method: 'POST',
+            body: JSON.stringify(data),
+        });
+    }
+
+    // --- Portal ---
+    async detectPortal() {
+        return this._fetch('/api/portal/detect');
+    }
+
+    async getPortalClients() {
+        return this._fetch('/api/portal/clients');
+    }
+
+    async refreshPortalClients(duration) {
+        return this._fetch('/api/portal/clients/refresh', {
+            method: 'POST',
+            body: JSON.stringify({ duration }),
+        });
+    }
+
+    async getPortalMac() {
+        return this._fetch('/api/portal/mac/current');
+    }
+
+    async spoofMac(targetMac, renewDhcp, testInternet) {
+        return this._fetch('/api/portal/mac/spoof', {
+            method: 'POST',
+            body: JSON.stringify({
+                target_mac: targetMac,
+                renew_dhcp: renewDhcp,
+                test_internet: testInternet,
+            }),
+        });
+    }
+
+    async restoreMac() {
+        return this._fetch('/api/portal/mac/restore', { method: 'POST' });
+    }
+
+    async auditPortal() {
+        return this._fetch('/api/portal/audit');
+    }
 }
 
 window.api = new ApiClient();

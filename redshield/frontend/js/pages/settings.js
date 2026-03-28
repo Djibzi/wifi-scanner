@@ -142,6 +142,59 @@ class SettingsPage {
                 </div>
             </div>
 
+            <!-- Portal -->
+            <div class="settings-section">
+                <h3>🔓 Portal</h3>
+                <div class="setting-row">
+                    <div class="setting-label">
+                        <div class="label-title">Détection auto du portail</div>
+                        <div class="label-desc">Détecter automatiquement les portails captifs lors du scan</div>
+                    </div>
+                    <div class="setting-control">
+                        <label class="toggle">
+                            <input type="checkbox" ${s.portal_auto_detect !== false ? 'checked' : ''}
+                                onchange="settingsPage._save('portal_auto_detect', this.checked)">
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                </div>
+                <div class="setting-row">
+                    <div class="setting-label">
+                        <div class="label-title">Durée d'écoute du trafic</div>
+                        <div class="label-desc">Durée (secondes) pour identifier les clients autorisés</div>
+                    </div>
+                    <div class="setting-control">
+                        <input class="input input-number" type="number" min="5" max="120" step="5"
+                            value="${s.portal_listen_duration || 30}"
+                            onchange="settingsPage._save('portal_listen_duration', parseInt(this.value))">
+                    </div>
+                </div>
+                <div class="setting-row">
+                    <div class="setting-label">
+                        <div class="label-title">Restauration MAC auto</div>
+                        <div class="label-desc">Restaurer la MAC originale à la fermeture de l'application</div>
+                    </div>
+                    <div class="setting-control">
+                        <label class="toggle">
+                            <input type="checkbox" ${s.portal_restore_mac !== false ? 'checked' : ''}
+                                onchange="settingsPage._save('portal_restore_mac', this.checked)">
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                </div>
+                <div class="setting-row">
+                    <div class="setting-label">
+                        <div class="label-title">Seuil de confiance client</div>
+                        <div class="label-desc">Nombre minimum de paquets vers Internet pour considérer un client comme autorisé</div>
+                    </div>
+                    <div class="setting-control">
+                        <input class="input input-number" type="number" min="1" max="100"
+                            value="${s.portal_min_packets || 5}"
+                            onchange="settingsPage._save('portal_min_packets', parseInt(this.value))">
+                    </div>
+                </div>
+            </div>
+
         `;
     }
 }
